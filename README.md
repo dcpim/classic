@@ -1,6 +1,8 @@
 # DCPIM v2.x
 
-This repo contains the code for DCPIM v2.x, a Personal Information Management (PIM) web app built in a classic style, using PHP code for the frontend and Python code for the backend scripts, both running as CGI scripts under an Apache web server. It consists of a core system and several optional modules for things such as photos, videos, music, projects, and much more.
+This repo contains the code for DCPIM v2.x, a Personal Information Management (PIM) web app developed since 2018 and built in a classic style, using PHP code for the frontend and Python code for the backend scripts, both running as CGI scripts under an Apache web server. It consists of a core system and several optional modules for things such as photos, videos, music, projects, and much more.
+
+Note that this project was made for personal use, and deploying it for a third party may require some customization to your specific needs. It hasn't been designed to be easily portable. v3.x is currently being designed to replace this code base, using a more portable architecture around containers.
 
 
 ## Requirements
@@ -9,11 +11,35 @@ The following software requirements are needed:
 
 * Apache web server
 * MySQL database server
+* AWS account (storage is done using S3, notifications using SNS)
+
+Your AWS account credentials must be configured on the system, either through an instance profile or a global credentials file. You also need to create the buckets configured below and a SNS topic for notifications.
+
+Edit `/etc/php/8.X/fpm/php.ini` and modify `upload_max_filesize = 999M`, `post_max_size = 999M`, `error_reporting = E_ERROR`, `display_errors = On`
+
+Create the folder `/uploads` and give it chmod 777.
+
+Install the connix Python module: `pip3 install connix`
 
 These environment variables need to be added to the Apache config in order for the scripts to connect to the database:
 
+```
+SetEnv DB_HOST localhost
+SetEnv DB_DATABASE mydb
+SetEnv DB_USER dcpm
+SetEnv DB_PASS XXXXXXXXXXXXXXX
+```
+
 Also, several tables must be created and populated in the database. Note that each module also have database tables, documented in each of their folders.
 
+Database creation:
+```
+CREATE DATABASE mydb DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci
+CREATE USER dcpm@localhost IDENTIFIED BY 'XXXXXXXXXXXXXXX';
+GRANT ALL PRIVILEGES ON mydb.* TO dcpm@localhost;
+```
+
+Tables creation:
 ### users
 ```
 CREATE TABLE `users` (
@@ -77,10 +103,39 @@ CREATE TABLE `log` (
 ) ENGINE=InnoDB AUTO_INCREMENT=7366771 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci
 ```
 
+The config table must be filled with the following values. Some of them are optional based on which module are being used.
+
+* OPENAI_KEY: API key for OpenAI ChatGPT
+* OPENAI_MODEL: OpenAI model to use for ChatGPT
+* DEVICE_TOKEN: Auth token used by devices to send stats
+* DATA_TOKEN: Auth token used to send scanning data
+* MY_IP: Default value for my IP
+* VPN_IP: Default value for VPN / Cloudfront IP
+* SERVER_HOST: Name of the server host
+* DB_HOST: Name of the database host
+* AWS_REGION: AWS region in use
+* STORAGE_HOST: Base URL for storage, with a replacable [bucket] name
+* SNS_ARN: ARN to use for SNS notifications
+* STEAM_KEY: Steam API key
+* STEAM_ID: Steam ID
+* EXPORT_PWD: Password for export 7zip file
+* AUTOMATE_TOKEN: Auth token for automate agents
+* AUTOMATE_BUCKET: S3 path for remote output data
+* BUCKET_IMAGES: S3 bucket for images (public)
+* BUCKET_VIDEOS: S3 bucket for videos (private)
+* BUCKET_FILES: S3 bucket for files (semi-private)
+* BUCKET_ACCOUNTING: S3 bucket for accounting (private)
+* BUCKET_DATA: S3 bucket for data (private)
+* BUCKET_MUSIC: S3 bucket for music (private)
+
+The `users` table should also be filled manually with the `admin` column being set to `1` for the site admin, and the `password` column being double SHA1 hashed.
+
 
 ## Installation
 
 The repo can be cloned and the script `deploy.py` can be used to deploy the files on the web server.
+
+The file `deploy.json` contains a full list of files and where they will be deployed.
 
 
 ## Authors
