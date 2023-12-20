@@ -1,4 +1,12 @@
 {
+	"functions.php": "/var/www/html/functions.php",
+	"font-awesome/font-awesome.min.css": "/var/www/html/font-awesome-4.7.0/css/font-awesome.min.css",
+	"font-awesome/FontAwesome.otf": "/var/www/html/font-awesome-4.7.0/fonts/FontAwesome.otf",
+	"font-awesome/fontawesome-webfont.eot": "/var/www/html/font-awesome-4.7.0/fonts/fontawesome-webfont.eot",
+	"font-awesome/fontawesome-webfont.svg": "/var/www/html/font-awesome-4.7.0/fonts/fontawesome-webfont.svg",
+	"font-awesome/fontawesome-webfont.ttf": "/var/www/html/font-awesome-4.7.0/fonts/fontawesome-webfont.ttf",
+	"font-awesome/fontawesome-webfont.woff": "/var/www/html/font-awesome-4.7.0/fonts/fontawesome-webfont.woff",
+	"font-awesome/fontawesome-webfont.woff2": "/var/www/html/font-awesome-4.7.0/fonts/fontawesome-webfont.woff2",
 	"js/bootstrap-datepicker.min.js": "/var/www/html/bootstrap-datepicker.min.js",
 	"js/bootstrap.min.js": "/var/www/html/bootstrap.min.js",
 	"js/dataTables.responsive.min.js": "/var/www/html/dataTables.responsive.min.js",
