@@ -15,6 +15,7 @@ with open("deploy.json", "r") as fd:
 for k,v in files.items():
 	print("* {} -> {}".format(k, v))
 	connix.cmd("cp \"{}\" \"{}\"".format(k, v))
-	connix.cmd("chmod +x \"{}\"".format(v))
+	if ".py" in v or ".php" in v:
+		connix.cmd("chmod +x \"{}\"".format(v))
 
 print("Done.")

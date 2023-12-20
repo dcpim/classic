@@ -1,3 +1,22 @@
 {
+	"js/bootstrap-datepicker.min.js": "/var/www/html/bootstrap-datepicker.min.js",
+	"js/bootstrap.min.js": "/var/www/html/bootstrap.min.js",
+	"js/dataTables.responsive.min.js": "/var/www/html/dataTables.responsive.min.js",
+	"js/editor.js": "/var/www/html/editor.js",
+	"js/jquery-min.js": "/var/www/html/jquery-min.js",
+	"js/jquery-ui.js": "/var/www/html/jquery-ui.js",
+	"js/jquery.dataTables.min.js": "/var/www/html/jquery.dataTables.min.js",
+	"js/prism.js": "/var/www/html/prism.js",
+	"js/responsive.bootstrap.min.js": "/var/www/html/responsive.bootstrap.min.js",
+	"js/aes.js": "/var/www/html/aes.js",
+	"js/qrcode.js": "/var/www/html/qrcode.js",
+	"css/bootstrap-datepicker.min.css": "/var/www/html/bootstrap-datepicker.min.css",
+	"css/bootstrap.min.css": "/var/www/html/bootstrap.min.css",
+	"css/darkmode.css": "/var/www/html/darkmode.css",
+	"css/editor.css": "/var/www/html/editor.css",
+	"css/jquery-ui.css": "/var/www/html/jquery-ui.css",
+	"css/jquery.dataTables.min.css": "/var/www/html/jquery.dataTables.min.css",
+	"css/prism.css": "/var/www/html/prism.css",
+	"css/responsive.bootstrap.min.css": "/var/www/html/responsive.bootstrap.min.css",
 	"scripts/run.py": "/usr/local/lib/python3.11/dist-packages/run.py"
 }

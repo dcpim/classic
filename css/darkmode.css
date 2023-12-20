@@ -1,0 +1,192 @@
+*
+{
+	color: #E0E0E0 !important;
+	background-color: #182025 !important;
+}
+html a
+{
+	text-decoration: none !important;
+	color: #3EAEEE !important;
+}
+
+input, select, textarea
+{
+    border-color: #3EAEEE !important;
+}
+
+input:read-only
+{
+	color: #A0A0A0 !important;
+}
+
+a .fa
+{
+	color: #3EAEEE !important;
+}
+a .fa-times
+{
+    color: #AE2E2E !important;
+}
+
+.alert a
+{
+    text-decoration: underline !important;
+}
+
+.alert-info
+{
+	background-color: #001535 !important;
+	color: #3EAEEE !important;
+	border-color: #3EAEEE !important;
+}
+.alert-info b, .alert-info a, .alert-info input, .alert-info div, .alert-info p, .alert-info h3, .alert-info i
+{
+	background-color: #001535 !important;
+	color: #3EAEEE !important;
+}
+
+.alert-danger
+{
+	background-color: #301010 !important;
+	color: #EEAEAE !important;
+	border-color: #EEAEAE !important;
+}
+.alert-danger b, .alert-danger i, .alert-danger a
+{
+	background-color: #301010 !important;
+	color: #EEAEAE !important;
+}
+
+.alert-warning
+{
+	background-color: #303000 !important;
+	color: #EEEEAE !important;
+	border-color: #EEEEAE !important;
+}
+.alert-warning b, .alert-warning i, .alert-warning a
+{
+	background-color: #303000 !important;
+	color: #EEEEAE !important;
+}
+
+.alert-success
+{
+	background-color: #002500 !important;
+	color: #9EDE9E !important;
+	border-color: #9EDE9E !important;
+}
+.alert-success b, .alert-success i, .alert-success a
+{
+	background-color: #002500 !important;
+	color: #9EDE9E !important;
+}
+
+.img-thumbnail
+{
+	background-color: #272832 !important;
+	border-color: #001535 !important;
+    border-width: 0px !important;
+	color: #3EAEEE !important;
+}
+.img-thumbnail i, .img-thumbnail font, .img-thumbnail p
+{
+	background-color: #272832 !important;
+	color: #C0C0C0 !important;
+}
+.img-thumbnail span
+{
+	background-color: #272832 !important;
+	color: #909090 !important;
+}
+.img-thumbnail b, .img-thumbnail a, .img-thumbnail center, .img-thumbnail h3
+{
+	background-color: #272832 !important;
+	color: #3EAEEE !important;
+	text-decoration: none !important;
+}
+
+.btn-primary
+{
+	background-color: #003050 !important;
+}
+.btn-secondary
+{
+	background-color: #505050 !important;
+}
+.btn-danger, .btn-danger b
+{
+	background-color: #501010 !important;
+}
+
+.badge
+{
+	background-color: #303030 !important;
+}
+
+.row-fluid
+{
+	background-color: #303030 !important;
+}
+
+table
+{
+	background-color: #272832 !important;
+	border-width: 0px !important;
+	border-style: solid !important;
+	border-color: #303030 !important;
+	padding: 2px !important;
+}
+td, tr, table i, table b, table a, table p, table center, table h3, table h4, table span, table code, table pre
+{
+	background-color: #272832 !important;
+}
+th, thead, tfoot
+{
+	background-color: #232428 !important;
+}
+
+.paginate_button a
+{
+	color: #FFFFFF !important;
+}
+
+.thumbnail
+{
+	border-width: 0px !important;
+}
+
+.badge
+{
+	background-color: #223355 !important;
+}
+
+hr
+{
+	border: 0px solid #9090AA;
+	border-top: 2px solid #9090AA;
+	margin-left: 15px;
+	margin-right: 15px;
+	padding-bottom: 10px;
+}
+
+.rowfluid, .line-control-status-bar, .line-control-menu-bar
+{
+	background-color: #232428 !important;
+	background-image: none !important;
+    border-color: #E0E0E0 !important;
+    border-width: 2px !important;
+}
+
+.btn-group div, .btn-group a, .btn-group i
+{
+    color: #E0E0E0 !important;
+}
+
+@media (max-width:640px)
+{
+	.dataTables_length
+	{
+		display: none !important;
+	}
+}
+
