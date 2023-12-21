@@ -18,7 +18,7 @@ if 'songs' not in form:
 	run.error("Missing fields.")
 
 # Make folder
-run.cmd("mkdir /tmp/music")
+run.cmd("mkdir -p /tmp/music")
 
 # List songs
 scount = run.query("SELECT COUNT(*) FROM music;")

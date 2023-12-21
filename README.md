@@ -133,6 +133,7 @@ The config table must be filled with the following values. Some of them are opti
 * AWS_LINK: AWS console link
 * REMOTE_NODE_1: Remote automation host 1
 * REMOTE_NODE_2: Remote automation host 2
+* DNS_DOMAIN: Domain for LAN devices
 
 The `users` table should also be filled manually with the `admin` column being set to `1` for the site admin, and the `password` column being double SHA1 hashed. Usernames should be alphanumeric characters.
 
