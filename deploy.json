@@ -1,5 +1,8 @@
 {
 	"functions.php": "/var/www/html/functions.php",
+	"index.php": "/var/www/html/index.php",
+	"bottom.php": "/var/www/html/bottom.php",
+	"top.php": "/var/www/html/top.php",
 	"font-awesome/font-awesome.min.css": "/var/www/html/font-awesome-4.7.0/css/font-awesome.min.css",
 	"font-awesome/FontAwesome.otf": "/var/www/html/font-awesome-4.7.0/fonts/FontAwesome.otf",
 	"font-awesome/fontawesome-webfont.eot": "/var/www/html/font-awesome-4.7.0/fonts/fontawesome-webfont.eot",
