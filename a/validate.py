@@ -17,9 +17,6 @@ import time
 print(connix.header())
 form = connix.form()
 
-if not run.validate(False):
-	run.error("Unauthorized.")
-
 if 'username' not in form or 'token' not in form:
 	run.error("Missing input.")
 
@@ -42,6 +39,7 @@ results = run.query("SELECT totp FROM users WHERE username = %s;", username)
 try:
 	key = results[0][0]
 except:
+	time.sleep(1)
 	run.error("No contact found.")
 
 # Check token
