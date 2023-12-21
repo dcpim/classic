@@ -53,7 +53,7 @@ def validate(loggedin=False):
 	if loggedin:
 		if "HTTP_COOKIE" not in os.environ:
 			return False
-		if "dendory_net_session" not in os.environ['HTTP_COOKIE']:
+		if "dcpim_net_session" not in os.environ['HTTP_COOKIE']:
 			return False
 		try:
 			db = pymysql.connect(host=os.environ['DB_HOST'], user=os.environ['DB_USER'], password=os.environ['DB_PASS'], database=os.environ['DB_DATABASE'])
@@ -61,11 +61,14 @@ def validate(loggedin=False):
 			cur.execute("SELECT COUNT(*) FROM sessions WHERE valid_until > UNIX_TIMESTAMP() AND ip = %s;", (os.environ['REMOTE_ADDR']))
 			results = cur.fetchall()
 			db.close()
-			if results[0][0] == 0 and os.environ['REMOTE_ADDR'] != config('MY_IP'):
+			if results[0][0] == 0 and os.environ['REMOTE_ADDR'] != config('MY_IP') and os.environ['REMOTE_ADDR'] != config('SERVER_IP') and os.environ['REMOTE_ADDR'] != "127.0.0.1":
 				return False
 		except:
 			error("Failed to connect to the database.")
-	if "HTTP_COOKIE" in os.environ and "dendory_net_darkmode=0" not in os.environ['HTTP_COOKIE']:
+	else:
+		if os.environ['REMOTE_ADDR'] != config('MY_IP') and os.environ['REMOTE_ADDR'] != config('SERVER_IP') and os.environ['REMOTE_ADDR'] != "127.0.0.1":
+			return False
+	if "HTTP_COOKIE" in os.environ and "dcpim_net_darkmode=0" not in os.environ['HTTP_COOKIE']:
 		print("<style>html {background-color:#182025;color:#E0E0E0;} .run_msg, .run_msg b, .run_msg i, .run_msg span {color:#000000;} a {color:#3EAEEE;}</style>")
 	return True
 

@@ -112,6 +112,7 @@ The config table must be filled with the following values. Some of them are opti
 * MY_IP: Default value for my IP
 * VPN_IP: Default value for VPN / Cloudfront IP
 * SERVER_HOST: Name of the server host
+* SERVER_IP: IP of the server host
 * DB_HOST: Name of the database host
 * AWS_REGION: AWS region in use
 * STORAGE_HOST: Base URL for storage, with a replacable [bucket] name
@@ -127,8 +128,11 @@ The config table must be filled with the following values. Some of them are opti
 * BUCKET_ACCOUNTING: S3 bucket for accounting (private)
 * BUCKET_DATA: S3 bucket for data (private)
 * BUCKET_MUSIC: S3 bucket for music (private)
+* AWS_LINK: AWS console link
+* REMOTE_NODE_1: Remote automation host 1
+* REMOTE_NODE_2: Remote automation host 2
 
-The `users` table should also be filled manually with the `admin` column being set to `1` for the site admin, and the `password` column being double SHA1 hashed.
+The `users` table should also be filled manually with the `admin` column being set to `1` for the site admin, and the `password` column being double SHA1 hashed. Usernames should be alphanumeric characters.
 
 
 ## Installation
@@ -136,6 +140,8 @@ The `users` table should also be filled manually with the `admin` column being s
 The repo can be cloned and the script `deploy.py` can be used to deploy the files on the web server.
 
 The file `deploy.json` contains a full list of files and where they will be deployed.
+
+The login form is at: `https://localhost/a`
 
 
 ## Authors

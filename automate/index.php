@@ -99,7 +99,7 @@ if($login_admin == 1) { modal("update.py", "delete.py", array(
 		"600" => "15 minutes", "3300" => "Every hour", "86100" => "Every day", "604500" => "Every week", "2591700" => "Every month", "0" => "Paused"
 	)),
 	array("type" => "selectkv", "var" => "node", "label" => "Node:", "options" => "required", "choices" => array(
-		"local" => $CONFIG['SERVER_HOST'], "gura" => "gura.dendory.net", "adusa" => "adusa.dendory.net"
+		"local" => $CONFIG['SERVER_HOST'], "gura" => $CONFIG['REMOTE_NODE_1'], "adusa" => $CONFIG['REMOTE_NODE_1']
 	)),
 	array("type" => "text", "var" => "nextrun", "label" => "Next run:", "options" => "readonly"),
 	array("type" => "checkbox", "var" => "notify", "label" => "Notify on failure", "options" => ""),

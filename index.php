@@ -11,7 +11,7 @@
 </div>
 
 <div class='img-thumbnail' style='display:inline-block;width:150px'>
-	<center><a target=_new href="https://dendoryca.signin.aws.amazon.com/console"><i class="fa fa-amazon fa-5x"></i><br>AWS Console</a></center>
+	<center><a target=_new href="<?php echo $CONFIG['AWS_LINK'] ?>"><i class="fa fa-amazon fa-5x"></i><br>AWS Console</a></center>
 </div>
 <div class='img-thumbnail' style='display:inline-block;width:150px'>
 	<center><a target=_new href="/share"><i class="fa fa-share fa-5x"></i><br>Share</a></center>

@@ -1,20 +1,20 @@
 <?php
 include 'functions.php';
 $darkmode = 1;
-if($_COOKIE["dendory_net_darkmode"] == "0")
+if($_COOKIE["dcpim_net_darkmode"] == "0")
 {
 	$darkmode = 0;
 }
 if($_SERVER['REQUEST_URI'] == "/profile/darkmode.php")
 {
-	if($_COOKIE["dendory_net_darkmode"] == "1")
+	if($_COOKIE["dcpim_net_darkmode"] == "1")
 	{
-		setcookie("dendory_net_darkmode", "0", time()+315360000, "/");
+		setcookie("dcpim_net_darkmode", "0", time()+315360000, "/");
 		$darkmode = 0;
 	}
 	else
 	{
-		setcookie("dendory_net_darkmode", "1", time()+315360000, "/");
+		setcookie("dcpim_net_darkmode", "1", time()+315360000, "/");
 		$darkmode = 1;
 	}
 }
@@ -52,8 +52,8 @@ if($_POST['username'] and $_POST['password'])
 				{
 					$q = "INSERT INTO sessions (username, valid_until, ip, admin, browser) VALUES ('" . $result['username'] . "', " . (time()+604800) . ", '" . $_SERVER['REMOTE_ADDR'] . "', " . $result['admin'] . ", md5('" . $_SERVER['HTTP_USER_AGENT'] . "'));";
 					$db->query($q);
-					setcookie("dendory_net_session", $result['username'], time()+31536000, "/");
-					setcookie("dendory_net_token", sha1($result['password']), time()+31536000, "/"); // Double hashed!
+					setcookie("dcpim_net_session", $result['username'], time()+31536000, "/");
+					setcookie("dcpim_net_token", sha1($result['password']), time()+31536000, "/"); // Double hashed!
 					$login_status = 4; // Username and password are valid, logged in
 					$login_admin = $result['admin'];
 				}
@@ -70,7 +70,7 @@ if($_POST['username'] and $_POST['password'])
 	$db->query($q);
 	exec("curl https://" . $CONFIG['SERVER_HOST'] . "/pipelines/bucket_policies.py > /dev/null 2>&1 &");
 }
-else if($_SERVER['REQUEST_URI'] != "/a/" and $_COOKIE["dendory_net_session"] != "")
+else if($_SERVER['REQUEST_URI'] != "/a/" and $_COOKIE["dcpim_net_session"] != "")
 {
 	$login_status = 1; // Cookies are there but not valid yet
 	$token_status = 0; // Password check
@@ -78,7 +78,7 @@ else if($_SERVER['REQUEST_URI'] != "/a/" and $_COOKIE["dendory_net_session"] != 
 	$results = $db->query($q);
 	while($result = $results->fetch_assoc())
 	{
-		if($result['username'] == $_COOKIE["dendory_net_session"] and sha1($result['password']) == $_COOKIE["dendory_net_token"])
+		if($result['username'] == $_COOKIE["dcpim_net_session"] and sha1($result['password']) == $_COOKIE["dcpim_net_token"])
 		{
 			$token_status = 1; // Username and hash in cookies are valid
 		}
@@ -87,7 +87,7 @@ else if($_SERVER['REQUEST_URI'] != "/a/" and $_COOKIE["dendory_net_session"] != 
 	$results = $db->query($q);
 	while($result = $results->fetch_assoc())
 	{
-		if(($result['ip'] == $_SERVER['REMOTE_ADDR'] or $result['browser'] == md5($_SERVER['HTTP_USER_AGENT'])) and $result['username'] == $_COOKIE["dendory_net_session"] and $token_status == 1)
+		if(($result['ip'] == $_SERVER['REMOTE_ADDR'] or $result['browser'] == md5($_SERVER['HTTP_USER_AGENT'])) and $result['username'] == $_COOKIE["dcpim_net_session"] and $token_status == 1)
 		{
 			$login_status = 3; // Cookies are there and valid, logged in
 			$login_admin = $result['admin'];
@@ -163,8 +163,8 @@ elseif($login_status == 4) // Username and password are valid, logged in
 if($_SERVER['REQUEST_URI'] == "/" and $login_status == 3) // Session is valid, logged in
 {
 	// Last login box
-	echo "<div class='alert alert-info' role='alert'>You are currently logged in as <b>" . $_COOKIE["dendory_net_session"] . "</b> from <b>" . $_SERVER['REMOTE_ADDR'] . "</b>.";
-	$results = $db->query("select * from log WHERE event = 'login' AND username = \"" . $_COOKIE["dendory_net_session"] . "\" ORDER BY id DESC LIMIT 1;");
+	echo "<div class='alert alert-info' role='alert'>You are currently logged in as <b>" . $_COOKIE["dcpim_net_session"] . "</b> from <b>" . $_SERVER['REMOTE_ADDR'] . "</b>.";
+	$results = $db->query("select * from log WHERE event = 'login' AND username = \"" . $_COOKIE["dcpim_net_session"] . "\" ORDER BY id DESC LIMIT 1;");
 	$lastip = "";
 	while($result = $results->fetch_assoc())
 	{

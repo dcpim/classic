@@ -29,7 +29,7 @@ results = cur.fetchall()
 for result in results:
 	CONFIG[result[0]] = result[1]
 
-envs = "export HTTP_REFERER=https://{}/automate;export DB_DATABASE={};export DB_HOST={};export DB_USER={};export DB_PASS={};".format(CONFIG['SERVER_HOST'], db_database, db_host, db_user, db_pass)
+envs = "export HTTP_REFERER=https://{}/automate;export REMOTE_ADDR=127.0.0.1;export DB_DATABASE={};export DB_HOST={};export DB_USER={};export DB_PASS={};".format(CONFIG['SERVER_HOST'], db_database, db_host, db_user, db_pass)
 
 cur.execute("SELECT id,pipeline,params,next_run,repeats,notify,history FROM automate WHERE repeats != 0 AND node = 'local';")
 pipelines = cur.fetchall()
