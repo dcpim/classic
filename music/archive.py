@@ -26,14 +26,14 @@ songs = run.query("SELECT * FROM music ORDER BY id DESC LIMIT %s;", (scount[0][0
 
 for song in songs:
 	filename = "{} - {}.{}".format(connix.alphanum(song[2],spaces=True), connix.alphanum(song[1],spaces=True), song[3][-3:])
-	run.cmd("aws s3 cp \"s3://dendory-music/{}\" \"/tmp/music/{}\"".format(song[3], filename))
+	run.cmd("aws s3 cp \"s3://{}/{}\" \"/tmp/music/{}\"".format(run.config('BUCKET_MUSIC'), song[3], filename))
 
 # Make archive
 run.cmd("zip -j -r /tmp/music.zip /tmp/music")
 
 # Upload to S3
-run.cmd("aws s3 cp /tmp/music.zip s3://dendory-files/Share/music.zip")
-print("<p>Archive: <a href='https://{}/Share/music.zip'>https://{}/Share/music.zip</a></p>".format(run.config('STORAGE_HOST').replace('[bucket]','dendory-files'), run.config('STORAGE_HOST').replace('[bucket]','dendory-files')))
+run.cmd("aws s3 cp /tmp/music.zip s3://{}/Share/music.zip".format(run.config('BUCKET_FILES')))
+print("<p>Archive: <a href='https://{}/Share/music.zip'>https://{}/Share/music.zip</a></p>".format(run.config('STORAGE_HOST').replace('[bucket]',run.config('BUCKET_FILES')), run.config('STORAGE_HOST').replace('[bucket]',run.config('BUCKET_FILES'))))
 
 # Delete folder
 run.cmd("rm -f /tmp/music.zip")
