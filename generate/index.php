@@ -46,8 +46,6 @@ function generate()
 		}
 	};
 	var data = new FormData();
-	var file = document.getElementById('filename').files[0];
-	data.append("filename", file);
 	data.append("prompt", prompt);
 	xhttp.send(data);
 }

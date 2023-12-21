@@ -9,7 +9,7 @@ import json
 import random
 import base64
 
-print(connix.header()	)
+print(connix.header())
 form = connix.form()
 
 if 'prompt' not in form:
