@@ -56,6 +56,8 @@
 	"games/create.py": "/var/www/html/games/create.py",
 	"games/update.py": "/var/www/html/games/update.py",
 	"games/delete.py": "/var/www/html/games/delete.py",
+	"generate/index.php": "/var/www/html/generate/index.php",
+	"generate/generate.py": "/var/www/html/generate/generate.py",
 	"font-awesome/font-awesome.min.css": "/var/www/html/font-awesome-4.7.0/css/font-awesome.min.css",
 	"font-awesome/FontAwesome.otf": "/var/www/html/font-awesome-4.7.0/fonts/FontAwesome.otf",
 	"font-awesome/fontawesome-webfont.eot": "/var/www/html/font-awesome-4.7.0/fonts/fontawesome-webfont.eot",
