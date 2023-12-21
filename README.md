@@ -21,6 +21,8 @@ Create the folder `/uploads` and give it chmod 777.
 
 Install the connix Python module: `pip3 install connix`
 
+You will also need the `ffmpeg`, `ImageMagick` and `yt-dlp` packages for video and image management.
+
 These environment variables need to be added to `/etc/apache2/sites-available/default-ssl.conf` in order for the scripts to connect to the database:
 
 ```
