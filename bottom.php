@@ -1,5 +1,5 @@
 			<div class="row">
-				<p><center><font size=-1><i>This content is confidential property of the owner. Unauthorized use is prohibited.<br>DCPIM <?php
+				<p><center><font size=-1><i>The content on this site is confidential. Unauthorized use is prohibited.<br>DCPIM <?php
 $results = $db->query("SELECT notes FROM projects WHERE id = 86;");
 while($result = $results->fetch_assoc())
 {
