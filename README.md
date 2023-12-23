@@ -105,18 +105,6 @@ CREATE TABLE `log` (
 ) ENGINE=InnoDB AUTO_INCREMENT=7366771 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci
 ```
 
-### presets
-```
-CREATE TABLE `presets` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `type` varchar(30) NOT NULL,
-  `name` varchar(50) NOT NULL,
-  `address` varchar(150) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `uq` (`type`,`name`)
-) ENGINE=InnoDB AUTO_INCREMENT=1283 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci
-```
-
 The config table must be filled with the following values. Some of them are optional based on which module are being used.
 
 * OPENAI_KEY: API key for OpenAI ChatGPT

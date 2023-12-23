@@ -55,7 +55,7 @@ while($result = $results->fetch_assoc())
 		echo "<br><div class='alert alert-info' role='alert'><center><h3><i>End of new entries.</i></h3></center></div><br>\n";
 	}
 	echo "<div class='img-thumbnail' style='width:99%;padding-left:10px;padding-right:10px;margin-bottom:10px'>";
-	echo "<h3><a target=_new href='" . $result['url'] . "'>" . $result['title'] . "</a></h3>";
+	echo "<h3 style='margin-top:3px!important;margin-bottom:15px!important'><a target=_new href='" . $result['url'] . "'>" . $result['title'] . "</a></h3>";
 	if($result['image'] != "")
 	{
 		echo "<table width='99%'><tr><td width='30%'><img style='width:95%;' src='" . $result['image'] . "'></td><td><font size='+1'>" . $result['description'] . "</font></td></tr></table><br>";
