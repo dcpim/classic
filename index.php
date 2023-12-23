@@ -9,7 +9,6 @@
 <div class='img-thumbnail' style='display:inline-block;width:150px'>
 	<center><a target=_new href="https://drive.google.com"><i class="fa fa-files-o fa-5x"></i><br>Google Drive</a></center>
 </div>
-
 <div class='img-thumbnail' style='display:inline-block;width:150px'>
 	<center><a target=_new href="<?php echo $CONFIG['AWS_LINK'] ?>"><i class="fa fa-amazon fa-5x"></i><br>AWS Console</a></center>
 </div>
