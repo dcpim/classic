@@ -80,6 +80,8 @@
 	"art/delete.py": "/var/www/html/art/delete.py",
 	"art/create.py": "/var/www/html/art/create.py",
 	"art/update.py": "/var/www/html/art/update.py",
+	"secrets/index.php": "/var/www/html/secrets/index.php",
+	"secrets/secrets.py": "/var/www/html/secrets/secrets.py",
 	"projects/billables.php": "/var/www/html/projects/billables.php",
 	"projects/create_bill.py": "/var/www/html/projects/create_bill.py",
 	"projects/create_journal.py": "/var/www/html/projects/create_journal.py",
