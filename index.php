@@ -67,7 +67,7 @@
 	<center><a href="/lifechart"><i class="fa fa-user-circle-o fa-5x"></i><br>Lifechart</a></center>
 </div>
 <div class='img-thumbnail' style='display:inline-block;width:150px'>
-    <center><a href="/renders"><i class="fa fa-female fa-5x"></i><br>Art</a></center>
+    <center><a href="/art"><i class="fa fa-female fa-5x"></i><br>Art</a></center>
 </div>
 <div class='img-thumbnail' style='display:inline-block;width:150px'>
     <center><a href="/collection"><i class="fa fa-grav fa-5x"></i><br>Collection</a></center>
