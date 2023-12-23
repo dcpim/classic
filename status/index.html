@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset='utf-8'/>
+		<link rel="preconnect" href="https://fonts.gstatic.com">
+		<link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet"> 
+		<link href="https://fonts.googleapis.com/css2?family=Exo+2&display=swap" rel="stylesheet"> 
+        <style>
+            body
+            {
+                background-color: #000000;
+                color: #FFFFFF;
+                font-family: 'Audiowide', monospace;
+                width: 1750px;
+                padding-top: 40px;
+                padding-left: 50px;
+				margin-left: 50px;
+            }
+            #topline
+            {
+                align: center;
+                text-align: center;
+                font-size: 48px;
+                width: 99%;
+                padding-bottom: 5px;
+            }
+            #message
+            {
+                align: center;
+                text-align: center;
+                font-size: 32px;
+                width: 99%;
+                font-family: 'Exo 2', monospace;
+            }
+            a
+            {
+                color: cyan;
+            }
+            table
+            {
+                border: 0;
+                width: 99%;
+                overflow: hidden;
+                overflow-y: hidden;
+                max-height: 99%;
+            }
+            td
+            {
+                vertical-align: top;
+            }
+            #right
+            {
+                overflow: hidden;
+            }
+            #left
+            {
+                overflow: hidden;
+            }
+        </style>
+        <script>
+            function startTime()
+            {
+                var today = new Date();
+                var h = today.getHours();
+                var m = today.getMinutes();
+                var s = today.getSeconds();
+				var tokyo_h = today.getUTCHours() + 9;
+				if(tokyo_h > 23) { tokyo_h = tokyo_h - 24; }
+                m = checkTime(m);
+                s = checkTime(s);
+                var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+				document.getElementById('clock').innerHTML = "<nobr>" + h + ":" + m + ":" + s + "</nobr>";
+                document.getElementById('date').innerHTML = today.toLocaleDateString("en-US", options);
+                var t = setTimeout(startTime, 500);
+            }
+
+			function isEven(n)
+			{
+				return n % 2 == 0;
+			}
+
+            function checkTime(i)
+            {
+                if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
+                return i;
+            }
+
+            function getWeather()
+			{
+				var url = "weather.txt";
+				var jsonFile = new XMLHttpRequest();
+				jsonFile.open("GET", url, true);
+				jsonFile.send();
+				jsonFile.onreadystatechange = function()
+				{
+					if(jsonFile.readyState == 4 && jsonFile.status == 200)
+					{
+						document.getElementById("weather").innerHTML = jsonFile.responseText + " &nbsp;";
+					}
+				}
+				var t = setTimeout(getWeather, 400000);
+			}
+
+			function reload_news()
+			{
+				currentDate = new Date();
+				if(currentDate.getMinutes() % 2)
+				{
+					document.getElementById("left").src = "news1.html";
+					document.getElementById("right").src = "news2.html";
+				}
+				else
+				{
+					document.getElementById("left").src = "news3.html";
+					document.getElementById("right").src = "news4.html";
+				}
+			}
+
+			function reload_message()
+			{
+				document.getElementById("message").src = "message.php";
+			}
+        </script>
+	</head>
+	<body>
+		<div id="topline" style="width:100%"><div id="clock" style="float:left;width:250px;text-align:left"></div><div id="weather" style="float:right;width:250px;text-align:right"></div><div id="date" style="margin:0 auto;"></div></div>
+ 		<br>
+ 		<table><tr>
+			<td style='width:900px'>
+				<iframe id="left" scrolling="no" width="850px" height="815px" src="news1.html" allowtransparency="true" frameborder="0"></iframe>
+			</td>
+			<td style='width:900px'>
+				<iframe id="right" scrolling="no" width="850px" height="815px" src="news2.html" allowtransparency="true" frameborder="0"></iframe>
+			</td>
+		</tr></table><br>
+		<iframe id="message" scrolling="no" width="850px" height="45px" src="message.php" allowtransparency="true" frameborder="0"></iframe>
+		<script>
+			startTime();
+			getWeather();
+			window.setInterval("reload_news();", 60000);
+			window.setInterval("reload_message();", 950000);
+		</script>
+	</body>
+</html>
