@@ -87,6 +87,7 @@
 	"lifechart/delete.py": "/var/www/html/lifechart/delete.py",
 	"lifechart/create.py": "/var/www/html/lifechart/create.py",
 	"lifechart/update.py": "/var/www/html/lifechart/update.py",
+	"tarot/index.php": "/var/www/html/tarot/index.php",
 	"art/index.php": "/var/www/html/art/index.php",
 	"art/delete.py": "/var/www/html/art/delete.py",
 	"art/create.py": "/var/www/html/art/create.py",
