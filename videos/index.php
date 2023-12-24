@@ -203,6 +203,11 @@ if($login_admin == 1) { pipelines("Video pipelines", array(
 		array("type" => "submit", "size" => "3", "options" => "value='Play random'")
 	)),
 
+	array("title" => "Play a video URL or local wallpaper on status screen", "icon" => "youtube", "action" => "localplay.py", "inputs" => array(
+		array("type" => "text", "size" => "10", "options" => "name='url' maxlength='200' placeholder='Video URL' required"),
+		array("type" => "submit", "size" => "2", "options" => "value='Play'")
+	)),
+
 	array("title" => "Export CSV data", "icon" => "share-square-o", "action" => "/pipelines/export.py", "inputs" => array(
 		array("type" => "selectkv", "size" => "9", "options" => "name='data' required", "choices" => array(
 			"videos" => "Videos library"

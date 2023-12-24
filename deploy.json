@@ -56,6 +56,7 @@
 	"videos/delete.py": "/var/www/html/videos/delete.py",
 	"videos/index.php": "/var/www/html/videos/index.php",
 	"videos/large_video.py": "/var/www/html/videos/large_video.py",
+	"videos/localplay.py": "/var/www/html/videos/localplay.py",
 	"videos/localplay_clear.py": "/var/www/html/videos/localplay_clear.py",
 	"videos/localplay_random.py": "/var/www/html/videos/localplay_random.py",
 	"videos/makeslideshow.py": "/var/www/html/videos/makeslideshow.py",
