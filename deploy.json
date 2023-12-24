@@ -82,6 +82,7 @@
 	"income/delete.py": "/var/www/html/income/delete.py",
 	"income/create.py": "/var/www/html/income/create.py",
 	"income/update.py": "/var/www/html/income/update.py",
+	"logs/index.php": "/var/www/html/logs/index.php",
 	"wallpapers/index.php": "/var/www/html/wallpapers/index.php",
 	"wallpapers/delete.py": "/var/www/html/wallpapers/delete.py",
 	"wallpapers/create.py": "/var/www/html/wallpapers/create.py",

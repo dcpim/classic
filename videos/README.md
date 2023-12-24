@@ -2,6 +2,8 @@
 
 Upload videos, download them from YouTube, add large videos from S3 and display them on the status screen.
 
+Create empty file `/var/www/html/localplay/play.txt` and set chmod 777.
+
 This module requires the following table:
 
 ### videos

@@ -2,7 +2,9 @@
 
 This module allows uploading files, sharing files, making a PDF from an archive of files, etc.
 
-It requires the following table:
+Create the folder `/uploads` and `/var/www/html/share` and set them chmod 777.
+
+It also requires the following table:
 
 ### utils
 ```

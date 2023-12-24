@@ -17,8 +17,6 @@ Your AWS account credentials must be configured on the system, either through an
 
 Edit `/etc/php/8.X/fpm/php.ini` and modify `upload_max_filesize = 999M`, `post_max_size = 999M`, `error_reporting = E_ERROR`, `display_errors = On`
 
-Create the folder `/uploads` and `/var/www/html/share` and set them chmod 777.
-
 Install the connix Python module: `pip3 install connix`
 
 You will also need the `ffmpeg`, `ImageMagick` and `yt-dlp` packages for video and image management.
