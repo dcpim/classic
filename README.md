@@ -128,10 +128,14 @@ The config table must be filled with the following values. Some of them are opti
 * BUCKET_ACCOUNTING: S3 bucket for accounting (private)
 * BUCKET_DATA: S3 bucket for data (private)
 * BUCKET_MUSIC: S3 bucket for music (private)
+* BUCKET_BACKUPS: S3 bucket for backups (private)
+* BUCKET_LOGS: S3 bucket for logs (private)
 * AWS_LINK: AWS console link
 * REMOTE_NODE_1: Remote automation host 1
 * REMOTE_NODE_2: Remote automation host 2
 * DNS_DOMAIN: Domain for LAN devices
+* LOCAL_USER: Local user account
+* S3_REPORTS: Report location for Storage Lens
 
 The `users` table should also be filled manually with the `admin` column being set to `1` for the site admin, and the `password` column being double SHA1 hashed. Usernames should be alphanumeric characters.
 

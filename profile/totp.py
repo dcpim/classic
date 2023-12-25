@@ -17,7 +17,7 @@ import time
 print(connix.header())
 form = connix.form()
 
-if not run.validate(False):
+if not run.validate(True):
 	run.error("Unauthorized.")
 
 if 'key' not in form or 'token' not in form:

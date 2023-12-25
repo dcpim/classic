@@ -9,7 +9,7 @@ import run
 print(connix.header())
 form = connix.form()
 
-if not run.validate(False):
+if not run.validate(True):
 	run.error("Unauthorized.")
 
 if 'url' not in form:

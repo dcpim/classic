@@ -12,7 +12,7 @@ from dateutil.relativedelta import relativedelta
 print(connix.header())
 form = connix.form()
 
-if not run.validate(False):
+if not run.validate(True):
 	run.error("Unauthorized.")
 
 if 'old_passwd' not in form or 'new_passwd1' not in form or 'new_passwd2' not in form:

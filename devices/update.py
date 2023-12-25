@@ -7,7 +7,7 @@ import sys
 import os
 import run
 
-hosted_id = "Z32P4NLBOFAH8H"
+hosted_id = run.config('DNS_ZONE')
 
 print(connix.header())
 form = connix.form()

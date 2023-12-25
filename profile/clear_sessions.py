@@ -10,7 +10,7 @@ from hashlib import sha1
 print(connix.header())
 form = connix.form()
 
-if not run.validate(False):
+if not run.validate(True):
 	run.error("Unauthorized.")
 
 if 'HTTP_COOKIE' in os.environ:
