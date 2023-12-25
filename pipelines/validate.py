@@ -18,6 +18,7 @@ data = run.query('SELECT COUNT(*),ip FROM log WHERE result = "Unauthorized." AND
 
 total = 0
 for row in data:
+	print("{}: {}<br>\n".format(row[1], row[0]))
 	if int(row[0]) > 5:
 		run.notify("There were [{}] unauthorized requests from [{}].".format(row[0], row[1]))
 	total += int(row[0])

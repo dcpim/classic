@@ -1,20 +1,17 @@
 <?php include 'top.php'; ?>
 
 <?php if($login_admin == 5 or $login_admin == 1) { ?>
-<h4>External links</h4>
+<h4>Quick links</h4>
 
-<div class='img-thumbnail' style='display:inline-block;width:150px'>
-	<center><a target=_new href="/sig"><i class="fa fa-pencil fa-5x"></i><br>Signature sample</a></center>
-</div>
-<div class='img-thumbnail' style='display:inline-block;width:150px'>
-	<center><a target=_new href="https://drive.google.com"><i class="fa fa-files-o fa-5x"></i><br>Google Drive</a></center>
-</div>
-<div class='img-thumbnail' style='display:inline-block;width:150px'>
-	<center><a target=_new href="<?php echo $CONFIG['AWS_LINK'] ?>"><i class="fa fa-amazon fa-5x"></i><br>AWS Console</a></center>
-</div>
-<div class='img-thumbnail' style='display:inline-block;width:150px'>
-	<center><a target=_new href="/share"><i class="fa fa-share fa-5x"></i><br>Share</a></center>
-</div>
+<?php
+$results = $db->query("SELECT * FROM quick_links ORDER BY name ASC;");
+while($result = $results->fetch_assoc())
+{
+	echo "<div class='img-thumbnail' style='display:inline-block;width:150px'>\n";
+	echo "	<center><a target=_new href='" . $result['url'] . "'><i class='fa fa-" . $result['icon'] . " fa-5x'></i><br>" . $result['name'] . "</a></center>\n";
+	echo "</div>\n";
+}
+?>
 
 <?php } if($login_admin == 1 or $login_admin == 2 or $login_admin == 3) { ?>
 <h4>Finance</h4>
