@@ -39,7 +39,7 @@ run.cmd("""
 uptime=$(uptime | awk -F [p,] '{print $2}' | xargs | tr -s ' ' '+')
 update=$(stat /var/log/apt/history.log | grep Modify | awk '{print $2}')
 usage=$(df -h | grep 'nvme0n1p1 '| awk '{print $5}' | rev | cut -c 2- | rev)
-curl "https://""" + run.config('SERVER_HOST') + """/pipelines/device_stats.py?token=sdSDGge3sef28ufwGRgewu8f21ur&device=Erza&disk=20GB&usage=$usage&update=$update&uptime=$uptime"
+curl "https://""" + run.config('SERVER_HOST') + """/pipelines/device_stats.py?token=""" + run.config('DEVICE_TOKEN') + """&device=Erza&disk=20GB&usage=$usage&update=$update&uptime=$uptime"
 """)
 
 # Done
