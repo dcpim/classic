@@ -55,6 +55,20 @@ def validate(loggedin=False):
 			return False
 		if "dcpim_net_session" not in os.environ['HTTP_COOKIE']:
 			return False
+		try:
+			db = pymysql.connect(host=os.environ['DB_HOST'], user=os.environ['DB_USER'], password=os.environ['DB_PASS'], database=os.environ['DB_DATABASE'])
+			cur = db.cursor()
+			cur.execute("SELECT username FROM users;")
+			user_found = False
+			results = cur.fetchall()
+			for result in results:
+				if result[0] in os.environ['HTTP_COOKIE']:
+					user_found = True
+			db.close()
+			if not user_found:
+				return False
+		except:
+			error("Failed to connect to the database.")
 	try:
 		db = pymysql.connect(host=os.environ['DB_HOST'], user=os.environ['DB_USER'], password=os.environ['DB_PASS'], database=os.environ['DB_DATABASE'])
 		cur = db.cursor()
