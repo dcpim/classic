@@ -3,6 +3,7 @@
 
 import connix
 import run
+import os
 
 print(connix.header())
 form = connix.form()
@@ -15,8 +16,8 @@ run.cmd("mkdir -p /tmp/backups")
 
 # Backing up local files
 run.cmd("tar -cvzf /tmp/backups/www.tgz  --absolute-names /var/www")
-run.cmd("tar -cvzf /tmp/backups/scripts.tgz  --absolute-names /home/{}/scripts".format(run.config('BUCKET_BACKUPS')))
-run.cmd("tar -cvzf /tmp/backups/git.tgz  --absolute-names /home/{}/git".format(run.config('BUCKET_BACKUPS')))
+run.cmd("tar -cvzf /tmp/backups/scripts.tgz  --absolute-names /home/{}/scripts".format(run.config('LOCAL_USER')))
+run.cmd("tar -cvzf /tmp/backups/git.tgz  --absolute-names /home/{}/git".format(run.config('LOCAL_USER')))
 run.cmd("tar -cvzf /tmp/backups/apache2_config.tgz  --absolute-names /etc/apache2")
 run.cmd("tar -cvzf /tmp/backups/postfix_config.tgz  --absolute-names /etc/postfix")
 run.cmd("mysqldump -h localhost  --quick --compress  --skip-lock-tables {} > /tmp/backups/{}.sql".format(os.environ['DB_DATABASE'], os.environ['DB_DATABASE']))
