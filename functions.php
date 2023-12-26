@@ -186,6 +186,8 @@ function modal($update, $delete, $inputs, $custom_event = "location.reload();", 
 	echo "xhttp.onreadystatechange = function() {";
 	echo "if(this.readyState == 4) { if(this.responseText.includes('DONE!')) {";
 	echo $custom_event;
+	echo "} else if(this.responseText.includes(\"class='run_msg'><b>ERROR:</b>\")) {";
+	echo "alert(this.responseText.substring(this.responseText.indexOf(\"class='run_msg'><b>ERROR:</b>\") + 29, this.responseText.lastIndexOf(\"<span\")));";
 	echo "} else { alert(this.responseText); } } };";
 	echo "xhttp.send('id=' + encodeURIComponent(id)";
 	foreach($inputs as $input)
@@ -204,6 +206,8 @@ function modal($update, $delete, $inputs, $custom_event = "location.reload();", 
 	echo "xhttp.onreadystatechange = function() {";
 	echo "if(this.readyState == 4) { if(this.responseText.includes('DONE!')) {";
 	echo "location.reload();";
+	echo "} else if(this.responseText.includes(\"class='run_msg'><b>ERROR:</b>\")) {";
+	echo "alert(this.responseText.substring(this.responseText.indexOf(\"class='run_msg'><b>ERROR:</b>\") + 29, this.responseText.lastIndexOf(\"<span\")));";
 	echo "} else { alert(this.responseText); } } };";
 	echo "xhttp.send('id=' + encodeURIComponent(id)); }";
 	if($custom_button_api != "")
@@ -216,6 +220,8 @@ function modal($update, $delete, $inputs, $custom_event = "location.reload();", 
 		echo "xhttp.onreadystatechange = function() {";
 		echo "if(this.readyState == 4) { if(this.responseText.includes('DONE!')) {";
 		echo "location.reload();";
+		echo "} else if(this.responseText.includes(\"class='run_msg'><b>ERROR:</b>\")) {";
+		echo "alert(this.responseText.substring(this.responseText.indexOf(\"class='run_msg'><b>ERROR:</b>\") + 29, this.responseText.lastIndexOf(\"<span\")));";
 		echo "} else { alert(this.responseText); } } };";
 		echo "xhttp.send('id=' + encodeURIComponent(id)); }";
 	}

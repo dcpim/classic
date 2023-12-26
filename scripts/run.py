@@ -73,7 +73,6 @@ def validate(loggedin=False):
 def error(msg):
 	print("<div style='background-color:#E07070;padding:5px;margin:1px;' class='run_msg'><b>ERROR:</b> {} <span style='float:right;font-size:12px'>Go back <a href='/'>home</a>. {}.</span></div>".format(msg, timing()))
 	log("error", str(msg))
-	time.sleep(1)
 	quit(1)
 
 # Display a success message and quit

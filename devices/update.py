@@ -15,10 +15,10 @@ form = connix.form()
 if not run.validate(True):
 	run.error("Unauthorized.")
 
-if 'mac' not in form:
+if 'id' not in form:
 	run.error("Missing fields.")
 
-mac = form['mac']
+mac = form['id']
 
 # Update notes
 if "notes" in form and form['notes'] != "":

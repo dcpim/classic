@@ -13,10 +13,10 @@ form = connix.form()
 if not run.validate(True):
 	run.error("Unauthorized.")
 
-if 'mac' not in form:
+if 'id' not in form:
 	run.error("Missing fields.")
 
-mac = form['mac']
+mac = form['id']
 
 # Delete from database
 run.sql("DELETE FROM wlan_scan WHERE mac = %s;", mac)

@@ -227,7 +227,11 @@ function check_task(id, prjid)
             {
                 location.reload();
             }
-            else
+            else if(this.responseText.includes("class='run_msg'><b>ERROR:</b>"))
+			{
+				alert(this.responseText.substring(this.responseText.indexOf("class='run_msg'><b>ERROR:</b>") + 29, this.responseText.lastIndexOf("<span")));
+			}
+			else
             {
                 alert(this.responseText);
             }

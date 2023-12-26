@@ -182,89 +182,19 @@ $results = $db->query("SELECT * FROM wlan_scan;");
 while($result = $results->fetch_assoc())
 {
     echo "<tr><td>" . $result['mac'] . "</td><td>" . $result['ip'] . "</td><td>" . $result['first_seen'] . "</td><td>" . $result['last_seen'] . "</td><td>" . $result['notes'] . "</td><td>" . $result['dns'];
-	if($login_admin == 1) { echo "<span style='float:right'><a title='Edit entry' class='update' href='#' data-toggle='modal' data-target='#updateModal' data-mac='" . $result['mac'] . "' data-dns=\"" . $result['dns'] . "\" data-notes=\"" . $result['notes'] . "\"><i class='fa fa-pencil-square-o'></i></a></span>"; }
+	if($login_admin == 1) { echo "<span style='float:right'><a title='Edit entry' class='update' href='#' data-toggle='modal' data-target='#updateModal' data-id='" . $result['mac'] . "' data-dns=\"" . $result['dns'] . "\" data-notes=\"" . $result['notes'] . "\"><i class='fa fa-pencil-square-o'></i></a></span>"; }
 	echo "</td></tr>\n";
 }
 tablebottom("devices", "3", "desc");
 ?>
 
-<script>
-$(document).on("click", ".update", function()
-{
-	$(".modal-body #modal_mac").val($(this).data('mac'));
-	$(".modal-body #modal_dns").val($(this).data('dns'));
-	$(".modal-body #modal_notes").val($(this).data('notes'));
-});
-function save_file()
-{
-	var mac = document.getElementById('modal_mac').value;
-	var notes = document.getElementById('modal_notes').value;
-	var dns = document.getElementById('modal_dns').value;
-	var xhttp = new XMLHttpRequest();
-	xhttp.open("POST", "update.py", true);
-	xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    xhttp.onreadystatechange = function()
-    {
-        if(this.readyState == 4)
-        {
-            if(this.responseText.includes("DONE!"))
-            {
-	            location.reload();
-            }
-            else
-            {
-                alert(this.responseText);
-            }
-        }
-    };
-	xhttp.send("mac=" + encodeURIComponent(mac) + "&dns=" + encodeURIComponent(dns) + "&notes=" + encodeURIComponent(notes));
-}
-function delete_file()
-{
-	var mac = document.getElementById('modal_mac').value;
-	var xhttp = new XMLHttpRequest();
-	xhttp.open("POST", "delete.py", true);
-	xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    xhttp.onreadystatechange = function()
-    {
-        if(this.readyState == 4)
-        {
-            if(this.responseText.includes("DONE!"))
-            {
-	            location.reload();
-            }
-            else
-            {
-                alert(this.responseText);
-            }
-        }
-    };
-	xhttp.send("mac=" + encodeURIComponent(mac));
-}
-</script>
-
-<div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Update entry</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        MAC Address: <input class="form-control" maxlength='50' type="text" id="modal_mac" readonly><br>
-        Notes: <input class="form-control" maxlength='95' type="text" id="modal_notes"><br>
-        Hostname: <input class="form-control" maxlength='40' type="text" id="modal_dns"><br>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-        <button type="button" class="btn btn-primary" onclick="save_file()" data-dismiss="modal">Save</button>
-        <button type="button" class="btn btn-danger" style="float:left" onclick="delete_file()" data-dismiss="modal">Delete</button>
-      </div>
-    </div>
-  </div>
-</div>
+<?php
+if($login_admin == 1) { modal("update.py", "delete.py", array(
+	array("type" => "text", "var" => "id", "label" => "MAC Address:", "options" => "readonly"),
+	array("type" => "text", "var" => "notes", "label" => "Notes:", "options" => "maxlength='95'"),
+	array("type" => "text", "var" => "dns", "label" => "Hostname:", "options" => "maxlength='40'"),
+)); }
+?>
 
 <br>
 

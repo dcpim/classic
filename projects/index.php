@@ -177,6 +177,10 @@ function save_notes()
 				document.getElementById("result").innerHTML = "<b><i>Saved successfully.</i></b>";
 				$("#curnote").find('option:selected').val(notes.replace('"', '&quot;'));
 			}
+			else if(this.responseText.includes("class='run_msg'><b>ERROR:</b>"))
+			{
+				document.getElementById("result").innerHTML = this.responseText.substring(this.responseText.indexOf("class='run_msg'><b>ERROR:</b>") + 29, this.responseText.lastIndexOf("<span"));
+			}
 			else { document.getElementById("result").innerHTML = this.responseText; }
 		}
 	};
@@ -198,6 +202,10 @@ function share_notes()
 			{
 				var url = this.responseText.substring(this.responseText.lastIndexOf("<URL>") + 5, this.responseText.lastIndexOf("</URL>"));
 				document.getElementById("result").innerHTML = "<i><a targe=_blank href='" + url + "'>" + url + "</a></i>";
+			}
+			else if(this.responseText.includes("class='run_msg'><b>ERROR:</b>"))
+			{
+				document.getElementById("result").innerHTML = this.responseText.substring(this.responseText.indexOf("class='run_msg'><b>ERROR:</b>") + 29, this.responseText.lastIndexOf("<span"));
 			}
 			else { document.getElementById("result").innerHTML = this.responseText; }
 		}
@@ -245,6 +253,10 @@ function check_task(id, prjid)
             {
                 location.reload();
             }
+			else if(this.responseText.includes("class='run_msg'><b>ERROR:</b>"))
+			{
+				alert(this.responseText.substring(this.responseText.indexOf("class='run_msg'><b>ERROR:</b>") + 29, this.responseText.lastIndexOf("<span")));
+			}
             else
             {
                 alert(this.responseText);
@@ -267,6 +279,10 @@ function create_task(prjid)
             {
                 location.reload();
             }
+			else if(this.responseText.includes("class='run_msg'><b>ERROR:</b>"))
+			{
+				alert(this.responseText.substring(this.responseText.indexOf("class='run_msg'><b>ERROR:</b>") + 29, this.responseText.lastIndexOf("<span")));
+			}
             else
             {
                 alert(this.responseText);

@@ -78,6 +78,10 @@ function save_file()
             {
 	            location.reload();
             }
+			else if(this.responseText.includes("class='run_msg'><b>ERROR:</b>"))
+			{
+				alert(this.responseText.substring(this.responseText.indexOf("class='run_msg'><b>ERROR:</b>") + 29, this.responseText.lastIndexOf("<span")));
+			}
             else
             {
                 alert(this.responseText);
@@ -100,6 +104,10 @@ function delete_file()
             {
 	            location.reload();
             }
+			else if(this.responseText.includes("class='run_msg'><b>ERROR:</b>"))
+			{
+				alert(this.responseText.substring(this.responseText.indexOf("class='run_msg'><b>ERROR:</b>") + 29, this.responseText.lastIndexOf("<span")));
+			}
             else
             {
                 alert(this.responseText);

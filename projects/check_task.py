@@ -12,7 +12,7 @@ print(connix.header())
 form = connix.form()
 
 if not run.validate(True):
-	run.error("Unauthorized {}.".format(os.environ['REMOTE_ADDR']))
+	run.error("Unauthorized.")
 
 if 'id' not in form or 'prjid' not in form:
 	run.error("Missing input.")
