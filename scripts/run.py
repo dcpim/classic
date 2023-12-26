@@ -58,7 +58,7 @@ def validate(loggedin=False):
 		try:
 			db = pymysql.connect(host=os.environ['DB_HOST'], user=os.environ['DB_USER'], password=os.environ['DB_PASS'], database=os.environ['DB_DATABASE'])
 			cur = db.cursor()
-			cur.execute("SELECT username FROM users;")
+			cur.execute("SELECT username FROM sessions GROUP BY username;")
 			user_found = False
 			results = cur.fetchall()
 			for result in results:
