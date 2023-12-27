@@ -56,7 +56,7 @@ if($login_admin == 1) { pipelines("Files pipelines", array(
 		array("type" => "submit", "size" => "2", "options" => "value='Make PDF'")
 	)),
 
-	array("title" => "Upload a file to local filesystem", "icon" => "cloud-upload", "action" => ".upload.py", "inputs" => array(
+	array("title" => "Upload a file to local filesystem", "icon" => "cloud-upload", "action" => "upload.py", "inputs" => array(
 		array("type" => "file", "size" => "9", "options" => "name='filename' required"),
 		array("type" => "submit", "size" => "3", "options" => "value='Upload file'")
 	)),

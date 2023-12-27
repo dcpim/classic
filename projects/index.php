@@ -79,25 +79,25 @@ while($result = $results->fetch_assoc())
 	<span style='float:right'><a title='Update project' href="update.php?id=<?php echo $id; ?>"><i class="fa fa-pencil-square-o fa-2x"></i></a></span></td>
 </tr></table></div>
 
-<div class='img-thumbnail' style='display:inline-block;width:150px;margin-left:8px'>
+<div class='img-thumbnail' style='display:inline-block;width:150px;margin-left:6px'>
 	<center><a href="files.php?id=<?php echo $id; ?>"><i class="fa fa-files-o fa-5x"></i><br>Files</a> <span class="badge badge-light"><?php echo $count_files; ?></span></center>
 </div>
-<div class='img-thumbnail' style='display:inline-block;width:150px;margin-left:8px'>
+<div class='img-thumbnail' style='display:inline-block;width:150px;margin-left:6px'>
 	<center><a href="/secrets/?id=<?php echo $id; ?>"><i class="fa fa-lock fa-5x"></i><br>Secrets</a> <span class="badge badge-light"><?php echo $count_secrets; ?></span></center>
 </div>
-<div class='img-thumbnail' style='display:inline-block;width:150px;margin-left:8px'>
+<div class='img-thumbnail' style='display:inline-block;width:150px;margin-left:6px'>
 	<center><a href="journal.php?prjid=<?php echo $id; ?>"><i class="fa fa-pencil fa-5x"></i><br>Events</a> <span class="badge badge-light"><?php echo $count_journal; ?></span></center>
 </div>
-<div class='img-thumbnail' style='display:inline-block;width:150px;margin-left:8px'>
+<div class='img-thumbnail' style='display:inline-block;width:150px;margin-left:6px'>
 	<center><a href="bills.php?id=<?php echo $id; ?>"><i class="fa fa-money fa-5x"></i><br>Billables</a> <span class="badge badge-light"><?php echo $count_bills; ?></span></center>
 </div>
-<div class='img-thumbnail' style='display:inline-block;width:150px;margin-left:8px'>
+<div class='img-thumbnail' style='display:inline-block;width:150px;margin-left:6px'>
 	<center><a href="inventory.php?id=<?php echo $id; ?>"><i class="fa fa-cubes fa-5x"></i><br>Inventory</a> <span class="badge badge-light"><?php echo $count_items; ?></span></center>
 </div>
-<div class='img-thumbnail' style='display:inline-block;width:150px;margin-left:8px'>
+<div class='img-thumbnail' style='display:inline-block;width:150px;margin-left:6px'>
 	<center><a href="bookmarks.php?id=<?php echo $id; ?>"><i class="fa fa-globe fa-5x"></i><br>Bookmarks</a> <span class="badge badge-light"><?php echo $count_bookmarks; ?></span></center>
 </div>
-<div class='img-thumbnail' style='display:inline-block;width:150px;margin-left:8px'>
+<div class='img-thumbnail' style='display:inline-block;width:150px;margin-left:6px'>
 	<center><a href="/codex/?prjid=<?php echo $id; ?>"><i class="fa fa-code fa-5x"></i><br>Codex</a> <span class="badge badge-light"><?php echo $count_codex; ?></span></center>
 </div>
 

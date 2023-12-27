@@ -3,22 +3,30 @@
 	color: #E0E0E0 !important;
 	background-color: #182025 !important;
 }
+html, body
+{
+	background-color: #151515 !important;
+	min-height: 100vh;
+}
+.container
+{
+	border-right: 1px solid #474852;
+	border-left: 1px solid #474852;
+	min-height: 100vh;
+}
 html a
 {
 	text-decoration: none !important;
 	color: #3EAEEE !important;
 }
-
 input, select, textarea
 {
     border-color: #3EAEEE !important;
 }
-
 input:read-only
 {
 	color: #A0A0A0 !important;
 }
-
 a .fa
 {
 	color: #3EAEEE !important;
@@ -27,12 +35,10 @@ a .fa-times
 {
     color: #AE2E2E !important;
 }
-
 .alert a
 {
     text-decoration: underline !important;
 }
-
 .alert-info
 {
 	background-color: #001535 !important;
@@ -44,7 +50,6 @@ a .fa-times
 	background-color: #001535 !important;
 	color: #3EAEEE !important;
 }
-
 .alert-danger
 {
 	background-color: #301010 !important;
@@ -56,7 +61,6 @@ a .fa-times
 	background-color: #301010 !important;
 	color: #EEAEAE !important;
 }
-
 .alert-warning
 {
 	background-color: #303000 !important;
@@ -68,7 +72,6 @@ a .fa-times
 	background-color: #303000 !important;
 	color: #EEEEAE !important;
 }
-
 .alert-success
 {
 	background-color: #002500 !important;
@@ -80,12 +83,16 @@ a .fa-times
 	background-color: #002500 !important;
 	color: #9EDE9E !important;
 }
-
+.thumbnail table
+{
+	border: 1px solid #474852 !important;
+	border-radius: 4px !important;
+}
 .img-thumbnail
 {
 	background-color: #272832 !important;
-	border-color: #001535 !important;
-    border-width: 0px !important;
+	border: 1px solid #474852 !important;
+	margin: 2px;
 	color: #3EAEEE !important;
 }
 .img-thumbnail i, .img-thumbnail font, .img-thumbnail p
@@ -104,7 +111,6 @@ a .fa-times
 	color: #3EAEEE !important;
 	text-decoration: none !important;
 }
-
 .btn-primary
 {
 	background-color: #003050 !important;
@@ -117,17 +123,14 @@ a .fa-times
 {
 	background-color: #501010 !important;
 }
-
 .badge
 {
 	background-color: #303030 !important;
 }
-
 .row-fluid
 {
 	background-color: #303030 !important;
 }
-
 table
 {
 	background-color: #272832 !important;
@@ -144,22 +147,18 @@ th, thead, tfoot
 {
 	background-color: #232428 !important;
 }
-
 .paginate_button a
 {
 	color: #FFFFFF !important;
 }
-
 .thumbnail
 {
 	border-width: 0px !important;
 }
-
 .badge
 {
 	background-color: #223355 !important;
 }
-
 hr
 {
 	border: 0px solid #9090AA;
@@ -168,7 +167,6 @@ hr
 	margin-right: 15px;
 	padding-bottom: 10px;
 }
-
 .rowfluid, .line-control-status-bar, .line-control-menu-bar
 {
 	background-color: #232428 !important;
@@ -176,12 +174,10 @@ hr
     border-color: #E0E0E0 !important;
     border-width: 2px !important;
 }
-
 .btn-group div, .btn-group a, .btn-group i
 {
     color: #E0E0E0 !important;
 }
-
 @media (max-width:640px)
 {
 	.dataTables_length
@@ -189,4 +185,3 @@ hr
 		display: none !important;
 	}
 }
-
