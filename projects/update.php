@@ -22,7 +22,7 @@ while($result = $results->fetch_assoc())
 
 <h3>Update Project <?php echo $id; ?></h3><br>
 
-<form method="POST" action="./save.py">
+<form method="POST" action="update.py">
 
 	<h4>Project details</h4>
 

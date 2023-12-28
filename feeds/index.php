@@ -3,11 +3,11 @@
 <h3><a href="/" title="Back home"><i class="fa fa-rss"></i></a> Feeds</h3>
 
 <?php
-tabletop("feeds", "<tr><th>Name</th><th>URL</th><th>Filter</th></tr>");
+tabletop("feeds", "<tr><th>Name</th><th>URL</th><th>Filter</th><th>Count</th></tr>");
 $results = $db->query("SELECT * FROM rss_feeds;");
 while($result = $results->fetch_assoc())
 {
-    echo "<tr><td>" . $result['name'] . "</td><td><a target=_new href='" . $result['url'] . "'>" . $result['url'] . "</a></td><td>" . $result['filter'];
+    echo "<tr><td>" . $result['name'] . "</td><td><a target=_new href='" . $result['url'] . "'>" . $result['url'] . "</a></td><td>" . $result['filter'] . "</td><td>" . $result['count'];
 	if($login_admin == 1) { echo "<span style='float:right'><a title='Edit entry' class='update' href='#' data-toggle='modal' data-target='#updateModal' data-name=\"" . $result['name'] . "\" data-id='" . $result['id'] . "' data-url=\"" . $result['url'] . "\" data-filter=\"" . $result['filter'] . "\"><i class='fa fa-pencil-square-o'></i></a></span>"; }
 	echo "</td></tr>";
 }

@@ -18,10 +18,6 @@ if "HTTP_REFERER" not in os.environ:
 	run.error("Unauthorized.")
 if config('SERVER_HOST') not in os.environ['HTTP_REFERER']:
 	run.error("Unauthorized.")
-if "HTTP_COOKIE" not in os.environ:
-	run.error("Unauthorized.")
-if "dcpim_net_session" not in os.environ['HTTP_COOKIE']:
-	run.error("Unauthorized.")
 db = pymysql.connect(host=os.environ['DB_HOST'], user=os.environ['DB_USER'], password=os.environ['DB_PASS'], database=os.environ['DB_DATABASE'])
 cur = db.cursor()
 cur.execute("SELECT COUNT(*) FROM sessions WHERE valid_until > UNIX_TIMESTAMP() AND ip = %s;", (os.environ['REMOTE_ADDR']))

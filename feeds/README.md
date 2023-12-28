@@ -26,8 +26,9 @@ CREATE TABLE `rss_feeds` (
   `name` varchar(250) NOT NULL,
   `url` varchar(250) NOT NULL,
   `filter` varchar(100) DEFAULT NULL,
+  `count` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci
+) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci
 ```
 
 ### rss_lastread

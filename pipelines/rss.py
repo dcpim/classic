@@ -24,6 +24,7 @@ for feed in data:
 for feed in feeds:
 	print(feed)
 	rss = feedparser.parse(feed['url'])
+	count = 0
 	for item in rss['items']:
 		print("<li>{}: {}</li>".format(feed['url'], item['title']))
 		date = item['updated'].rsplit(' ', 1)[0]
@@ -56,9 +57,8 @@ for feed in feeds:
 				run.sql("INSERT IGNORE INTO rss (date, feed, url, title, description, image) VALUES (%s, %s, %s, %s, %s, %s);", date, feed['id'], url, title, desc, img)
 		else:
 			run.sql("INSERT IGNORE INTO rss (date, feed, url, title, description, image) VALUES (%s, %s, %s, %s, %s, %s);", date, feed['id'], url, title, desc, img)
-
-if "newfeed" in form:
-	print("<meta http-equiv=\"Refresh\" content=\"0; url='/feeds'\" />")
+		count += 1
+	run.sql("UPDATE rss_feeds SET count = %s WHERE id = %s;", count, feed['id'])
 
 run.done()
 
