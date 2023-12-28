@@ -16,7 +16,7 @@ while($result = $results->fetch_assoc())
 
 	if($curnetworth == 0)
 	{
-		echo "<br><div class='row'><div class='col-md-6'><table class='table table-striped table-hover display responsive' id='forsale'><tbody>";
+		echo "<br><div class='row'><div class='col-md-6'><table class='table table-striped table-hover display responsive'><tbody>";
 		echo "<tr><td colspan=2><center><b>Assets</b></center></td></tr>";
 		echo "<tr><td>Bank accounts</td><td align=right>$" . number_format($result['banks']) . "</td></tr>";
 		echo "<tr><td>Investments</td><td align=right>$" . number_format($result['investments']) . "</td></tr>";
@@ -26,7 +26,7 @@ while($result = $results->fetch_assoc())
 		echo "<tr><td><b>Total assets</b></td><td align=right><b>$" . number_format($assets) . "</b></td></tr>";
 		echo "</tbody></table></div>";
 
-		echo "<div class='col-md-6'><table class='table table-striped table-hover display responsive' id='forsale'><tbody>";
+		echo "<div class='col-md-6'><table class='table table-striped table-striped display responsive'><tbody>";
 		echo "<tr><td colspan=2><center><b>Liabilities</b></center></td></tr>";
 		echo "<tr><td>Mortgage</td><td align=right>$" . number_format($result['mortgage']) . "</td></tr>";
 		echo "<tr><td>Credit cards</td><td align=right>$" . number_format($result['cc']) . "</td></tr>";
@@ -37,7 +37,7 @@ while($result = $results->fetch_assoc())
 		echo "</tbody></table></div></div>";
 
 		echo "<div class='row'><div class='col-md-4'></div>";
-		echo "<div class='col-md-4'><table class='table table-hover display responsive' id='forsale'><tbody>";
+		echo "<div class='col-md-4 thumbnail'><table class='table display responsive'><tbody>";
 		echo "<tr><td><h3><b>Networth</b></h3></td><td align=right><h3><b>$" . number_format($networth) . "</b></h3></td></tr>";
 		echo "</tbody></table></div></div>";
 
@@ -130,8 +130,8 @@ $results = $db->query("SELECT banks,biz,investments,mortgage,loans,cc FROM netwo
 $year = date('Y');
 $l_sv = 0;
 $l_mtg = 0;
-$sv = 0;
-$mtg = 0;
+$sv = 0; // assets (minus equity)
+$mtg = 0; // liabilities
 while($result = $results->fetch_assoc())
 {
 	if($l_sv == 0)
@@ -149,10 +149,10 @@ $sv_diff = $sv - $l_sv;
 for($x = 1; $x < 20; $x++)
 {
 	$sv = $sv + $sv_diff;
-	$mtg = $mtg - $mtg_diff - ($mtg_diff*($x/15));
+	$mtg = $mtg - $mtg_diff - ($mtg_diff*($x/10));
 	if($mtg < 0) { $mtg = 0; $sv = $sv + ($mtg_diff*($x/10)); }
 	if($sv > 1000000) { break; }
-	echo "	['" . ($year+$x) . "', " . $sv . ", " . $mtg . "],\n";
+	echo "	['" . ($year+$x) . "', " . intval($sv) . ", " . intval($mtg) . "],\n";
 }
 ?>
     ]);

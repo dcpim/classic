@@ -75,8 +75,7 @@ while($result = $results->fetch_assoc())
 <div class='thumbnail'><table width='100%' style='line-height: 1.5;'><tr>
 	<td width='20%' style='padding-top:10px;padding-bottom:10px;padding-left:15px;'><i class="fa fa-address-card-o fa-4x"></i></td>
 	<td width='40%'>Project ID: <b><?php echo $id; ?></b><br>Client: <b><?php echo $client; ?></b><br>Address: <b><?php echo $address; ?></b></td>
-	<td width='40%'>Contact: <b><a href='mailto:<?php echo $contact_email; ?>'><?php echo $contact_name; ?></a></b><br>Timeframe: <b><?php echo $date; ?> &nbsp; - &nbsp; <?php echo $end_date; ?></b><br>Activities: <b><?php echo $count_codex + $count_bookmarks + $count_files + $count_tasks + $count_secrets + $count_journal + $count_bills + $count_items; ?></b>
-	<span style='float:right'><a title='Update project' href="update.php?id=<?php echo $id; ?>"><i class="fa fa-pencil-square-o fa-2x"></i></a></span></td>
+	<td width='40%'><span style='float:right'><a title='Update project' href="update.php?id=<?php echo $id; ?>"><i class="fa fa-pencil-square-o fa-2x"></i></a></span>Contact: <b><a href='mailto:<?php echo $contact_email; ?>'><?php echo $contact_name; ?></a></b><br>Timeframe: <b><?php echo $date; ?> &nbsp; - &nbsp; <?php echo $end_date; ?></b><br>Activities: <b><?php echo $count_codex + $count_bookmarks + $count_files + $count_tasks + $count_secrets + $count_journal + $count_bills + $count_items; ?></b><td>
 </tr></table></div>
 
 <div class='img-thumbnail' style='display:inline-block;width:150px;margin-left:6px'>
