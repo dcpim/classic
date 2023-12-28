@@ -1,9 +1,9 @@
 			<div class="row">
 				<p><center><font size=-1><i>The content on this site is confidential. Unauthorized use is prohibited.<br>DCPIM <?php
-$results = $db->query("SELECT notes FROM projects WHERE id = 86;");
+$results = $db->query("SELECT title FROM journal WHERE prjid = 86 AND type = 0 ORDER BY date DESC LIMIT 1;");
 while($result = $results->fetch_assoc())
 {
-	echo "2." . substr_count($result['notes'], "<li>");
+	echo $result['title'];
 }
 ?> - <?php
 $page_time_end = floor(microtime(true) * 1000);
