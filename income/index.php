@@ -6,8 +6,8 @@
 tabletop("acc", "<tr><th data-priority='1'>Date</th><th data-priority='2'>Description</th><th data-priority='2'>Debit</th><th data-priority='2'>Credit</th><th data-priority='1'>Balance</th></tr>");
 $mortgage_rate = 997.52; // Previous mortgage rate
 $mortgage_rate2022 = 904.15; // Current mortgage rate
-$tfsa_limit = 39800; // Current TFSA contribution limit, need to adjust each year
-$rrsp_limit = 74900; // Current RRSP contribution limit, need to adjust each year
+$tfsa_limit = 46800; // Current TFSA contribution limit, need to adjust each year
+$rrsp_limit = 104900; // Current RRSP contribution limit, need to adjust each year
 $balance = 6440.48; // Balance at the start of the data set
 $debits = 0; // Yearly spending
 $credits = 0; // Yearly income
@@ -258,111 +258,66 @@ echo "      ['" . $year . "', " . $spending . ", " . $income . "],\n";
 }
 </script>
 
-<!---
-
-<style>
-.tab-content>.tab-pane {
-  height: 1px;
-  overflow: hidden;
-  display: block;
- visibility: hidden;
-}
-.tab-content>.active {
-  height: auto;
-  overflow: hidden;
-  visibility: visible;
-padding:0px;
-margin:0px;
-}
-</style>
-
-<br><div class="row">
-	<nav>
-		<div class="nav nav-tabs" id="nav-tab" role="tablist"><h4>
-			<a class="nav-item nav-link active" id="tpie0" data-toggle="tab" href="#pie0" role="tab" aria-controls="pie0" aria-selected="true"><?php echo date('Y'); ?></a> &nbsp;
-			<a class="nav-item nav-link" id="tpie1" data-toggle="tab" href="#pie1" role="tab" aria-controls="pie1" aria-selected="false"><?php echo date('Y')-1; ?></a> &nbsp;
-			<a class="nav-item nav-link" id="tpie2" data-toggle="tab" href="#pie2" role="tab" aria-controls="pie2" aria-selected="false"><?php echo date('Y')-2; ?></a> &nbsp;
-			<a class="nav-item nav-link" id="tpie3" data-toggle="tab" href="#pie3" role="tab" aria-controls="pie3" aria-selected="false"><?php echo date('Y')-3; ?></a> &nbsp;
-			<a class="nav-item nav-link" id="tpie4" data-toggle="tab" href="#pie4" role="tab" aria-controls="pie4" aria-selected="false"><?php echo date('Y')-4; ?></a> &nbsp;
-		</h4></div>
-	</nav>
-	<div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
-		<div class="tab-pane in active" id="pie0" role="tabpanel" aria-labelledby="tpie0"><div id="piechart0"></div></div>
-		<div class="tab-pane fade" id="pie1" role="tabpanel" aria-labelledby="tpie1"><div id="piechart1"></div></div>
-		<div class="tab-pane fade" id="pie2" role="tabpanel" aria-labelledby="tpie2"><div id="piechart2"></div></div>
-		<div class="tab-pane fade" id="pie3" role="tabpanel" aria-labelledby="tpie3"><div id="piechart3"></div></div>
-		<div class="tab-pane fade" id="pie4" role="tabpanel" aria-labelledby="tpie4"><div id="piechart4"></div></div>
-	</div>
-</div>
-
-<?php
-
-for($i = 0; $i < 5; $i++) {
-
-?>
+<br><div id="piechart"></div>
 
 <script>
 google.charts.load('current', {packages: ['corechart']});
-google.charts.setOnLoadCallback(drawPie<?php echo $i; ?>);
+google.charts.setOnLoadCallback(drawPie);
 
-function drawPie<?php echo $i; ?>()
+function drawPie()
 {
-    var dataPie<?php echo $i; ?> = google.visualization.arrayToDataTable([
+    var dataPie = google.visualization.arrayToDataTable([
         ['Type', 'Amount'],
 <?php
-$year = date('Y') - $i;
-$cable = 0;
-$hydro = 0;
+$year = date('Y');
+$utils = 0;
 $others = 0;
 $food = 0;
-$us = 0;
-$cc = 0;
-$tax = 0;
+$travel = 0;
+$collectibles = 0;
 $housing = 0;
+$gaming = 0;
+$subs = 0;
 $results = $db->query("SELECT * FROM income WHERE date like '" . $year . "%' AND debit > 0 ORDER BY date ASC;");
 while($result = $results->fetch_assoc())
 {
     if($result['is_saving'] != 1)
     {
-		if(stripos($result['note'], "tangerine") !== false) { $food += $result['debit'] - $result['credit']; }
-		else if(stripos($result['note'], "wise ") !== false || stripos($result['note'], "florida") !== false) { $us += $result['debit'] - $result['credit']; }
-		else if(stripos($result['note'], "visa") !== false || stripos($result['note'], "credit card") !== false) { $cc += $result['debit'] - $result['credit']; }
- 		else if(stripos($result['note'], "videotron") !== false) { $cable += $result['debit'] - $result['credit']; }
-		else if(stripos($result['note'], "hydro") !== false) { $hydro += $result['debit'] - $result['credit']; }
-		else if(stripos($result['note'], "mortgage") !== false || stripos($result['note'], "condo") !== false) { $housing += $result['debit'] - $result['credit']; }
-		else if(stripos($result['note'], "tax") !== false || stripos($result['note'], "fee") !== false) { $tax += $result['debit'] - $result['credit']; }
+		if(stripos($result['note'], "tangerine") !== false || stripos($result['note'], "credit") !== false || stripos($result['note'], "domino") !== false) { $food += $result['debit'] - $result['credit']; }
+		else if(stripos($result['note'], "travel") !== false || stripos($result['note'], "hotel") !== false || stripos($result['note'], "flight") !== false) { $travel += $result['debit'] - $result['credit']; }
+ 		else if(stripos($result['note'], "videotron") !== false || stripos($result['note'], "hydro") !== false) { $utils += $result['debit'] - $result['credit']; }
+		else if(stripos($result['note'], "mortgage") !== false || stripos($result['note'], "hoa") !== false || stripos($result['note'], "city") !== false || stripos($result['note'], "school") !== false || stripos($result['note'], "condo") !== false || stripos($result['note'], "insurance") !== false) { $housing += $result['debit'] - $result['credit']; }
+		else if(stripos($result['note'], "steam") !== false || stripos($result['note'], "gam") !== false || stripos($result['note'], "in-app") !== false) { $gaming += $result['debit'] - $result['credit']; }
+		else if(stripos($result['note'], "collect") !== false || stripos($result['note'], "figure") !== false || stripos($result['note'], "japan") !== false) { $collectible += $result['debit'] - $result['credit']; }
+		else if(stripos($result['note'], "youtube") !== false || stripos($result['note'], "aws") !== false || stripos($result['note'], "apple") !== false || stripos($result['note'], "subscri") !== false) { $subs += $result['debit'] - $result['credit']; }
 		else { $others += $result['debit'] - $result['credit']; }
 	}
 }
-echo "['Phone / Internet', " . $cable . "],";
-echo "['Electricity', " . $hydro . "],";
-echo "['Food / local purchases', " . $food . "],";
-echo "['Online purchases', " . $cc . "],";
+echo "['Utilities', " . $utils . "],";
+echo "['Food', " . $food . "],";
 echo "['Housing', " . $housing . "],";
-echo "['Taxes / fees', " . $tax . "],";
-echo "['Travel / US transfers', " . $us . "],";
+echo "['Travel', " . $travel . "],";
+echo "['Collection', " . $collectibles . "],";
+echo "['Gaming', " . $gaming . "],";
+echo "['Subscriptions', " . $subs . "],";
 echo "['Others', " . $others . "],";
 ?>
         ]);
 
-        var optionsPie<?php echo $i; ?> = {
+        var optionsPie = {
             height: 500,
-            'chartArea': {'width': '100%', 'height': '80%'},
-            title: 'Spending categories for <?php echo $year; ?>'
+            chartArea: {'width': '100%', 'height': '80%'},
+			sliceVisibilityThreshold: 0,
+            title: 'Spending categories for <?php echo $year; ?>',
+ <?php if($darkmode) { ?> backgroundColor: '#182025', titleTextStyle: { color: '#C0C0C0', bold: true }, legend: { textStyle: { color: '#C0C0C0' }, position: 'top', alignment: 'end' }, chartArea: { backgroundColor: '#182025', width: '100%', left: 60, right: 30 }, hAxis:{textStyle:{color:'#707070'}}, vAxis:{textStyle:{color:'#707070'}} <?php } ?> 
         };
 
-        var chartPie<?php echo $i; ?> = new google.visualization.PieChart(document.getElementById('piechart<?php echo $i; ?>'));
+        var chartPie = new google.visualization.PieChart(document.getElementById('piechart'));
 
-        chartPie<?php echo $i; ?>.draw(dataPie<?php echo $i; ?>, optionsPie<?php echo $i; ?>);
+        chartPie.draw(dataPie, optionsPie);
       }
 
 </script>
-
-<?php
-}
-?>
-
---->
 
 <?php
 if($login_admin == 1) { modal("update.py", "delete.py", array(
