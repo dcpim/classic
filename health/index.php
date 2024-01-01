@@ -325,18 +325,18 @@ tablebottom("foods", "0" ,"desc");
 
 <?php if($login_admin == 1) { ?>
 
-<form method="POST" action="food.py"  enctype="multipart/form-data">
+<form method="POST" action="food.py" enctype="multipart/form-data">
     <div class="row">
         <div class="col-sm-8">
             <select data-live-search="true" class="selectpicker form-control" name="food">
 <?php
-$results = $db->query("SELECT id,name FROM foods WHERE name LIKE '" . date('Y') . "%' ORDER BY name;");
+$results = $db->query("SELECT id,name FROM foods WHERE name LIKE '" . intval(date('Y')-1) . "%' ORDER BY name;");
 while($record = $results->fetch_assoc())
 {
     echo "<option value='" . $record['id'] . "'>" . explode(" - ", $record['name'])[1] . " - " . explode(" - ", $record['name'])[2] . "</option>";
 }
 echo "<option value='-1'>--------------</option>";
-$results = $db->query("SELECT id,name FROM foods WHERE name NOT LIKE '" . date('Y') . "%' ORDER BY name;");
+$results = $db->query("SELECT id,name FROM foods WHERE name NOT LIKE '" . intval(date('Y')-1) . "%' ORDER BY name;");
 while($record = $results->fetch_assoc())
 {
     echo "<option value='" . $record['id'] . "'>" . explode(" - ", $record['name'])[1] . " - " . explode(" - ", $record['name'])[2] . "</option>";

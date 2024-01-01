@@ -129,7 +129,6 @@ while($result = $results->fetch_assoc())
 }
 $chartsavings[$year-1][2] += $rrspfix;
 $chartsavings[$year] = array($stocks, $equity, $rrsp, $tfsa, $crypto, $credits);
-if(($credits-$debits) < 0) { echo "-"; }
 echo "</tbody><tfoot><tr><th>Totals for " . $year . "</th><th></th><th>-$" . number_format($debits,2) . "</th><th>$" . number_format($credits,2) . "</th><th>$" . number_format(abs($credits - $debits),2) . "</th></tr></tfoot>";
 ?>
 </table>
@@ -177,6 +176,7 @@ function drawCurveTypes3()
 <?php
 foreach($chartsavings as $year => $s)
 {
+	if($s[5] == 0) { $s[5] = 1; }
 	if($year > 2017) { echo "[	'" . $year . "', " . max(round($s[0]),0) . ", " . max(round($s[1]),0) .  ", " . max(round($s[2]),0) . ", " . max(round($s[3]),0) . ", " . max(round($s[4]),0) . ", '" . round(($s[0]+$s[1]+$s[2]+$s[3]+$s[4])*100/$s[5]) . "%'],\n"; }
 }
 ?>
