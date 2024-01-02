@@ -330,13 +330,13 @@ tablebottom("foods", "0" ,"desc");
         <div class="col-sm-8">
             <select data-live-search="true" class="selectpicker form-control" name="food">
 <?php
-$results = $db->query("SELECT id,name FROM foods WHERE name LIKE '" . intval(date('Y')-1) . "%' ORDER BY name;");
+$results = $db->query("SELECT id,name FROM foods WHERE name LIKE '%2023%' ORDER BY name;");
 while($record = $results->fetch_assoc())
 {
     echo "<option value='" . $record['id'] . "'>" . explode(" - ", $record['name'])[1] . " - " . explode(" - ", $record['name'])[2] . "</option>";
 }
 echo "<option value='-1'>--------------</option>";
-$results = $db->query("SELECT id,name FROM foods WHERE name NOT LIKE '" . intval(date('Y')-1) . "%' ORDER BY name;");
+$results = $db->query("SELECT id,name FROM foods WHERE name NOT LIKE '%2023%' ORDER BY name;");
 while($record = $results->fetch_assoc())
 {
     echo "<option value='" . $record['id'] . "'>" . explode(" - ", $record['name'])[1] . " - " . explode(" - ", $record['name'])[2] . "</option>";
@@ -415,7 +415,7 @@ if($login_admin == 1) { pipelines("Health pipelines", array(
 
 	array("title" => "Add food item", "icon" => "cutlery", "action" => "add_food.py", "inputs" => array(
 		array("type" => "text", "size" => "7", "options" => "name='name' maxlength='50' placeholder='Food components' required"),
-		array("type" => "text", "size" => "2", "options" => "name='year' maxlength='5' value='" . date("Y") . "' required"),
+		array("type" => "text", "size" => "2", "options" => "name='year' maxlength='5' value='2023' required"),
 		array("type" => "select", "size" => "3", "options" => "name='type' required", "choices" => array(
 			"Breakfast", "Lunch", "Supper", "Snack"
 		)),

@@ -285,7 +285,7 @@ while($result = $results->fetch_assoc())
     {
 		if(stripos($result['note'], "tangerine") !== false || stripos($result['note'], "credit") !== false || stripos($result['note'], "domino") !== false) { $food += $result['debit'] - $result['credit']; }
 		else if(stripos($result['note'], "travel") !== false || stripos($result['note'], "hotel") !== false || stripos($result['note'], "flight") !== false) { $travel += $result['debit'] - $result['credit']; }
- 		else if(stripos($result['note'], "videotron") !== false || stripos($result['note'], "hydro") !== false) { $utils += $result['debit'] - $result['credit']; }
+ 		else if(stripos($result['note'], "videotron") !== false || stripos($result['note'], "hydro") !== false || stripos($result['note'], "desjardins") !== false || stripos($result['note'], "public") !== false) { $utils += $result['debit'] - $result['credit']; }
 		else if(stripos($result['note'], "mortgage") !== false || stripos($result['note'], "hoa") !== false || stripos($result['note'], "city") !== false || stripos($result['note'], "school") !== false || stripos($result['note'], "condo") !== false || stripos($result['note'], "insurance") !== false) { $housing += $result['debit'] - $result['credit']; }
 		else if(stripos($result['note'], "steam") !== false || stripos($result['note'], "gam") !== false || stripos($result['note'], "in-app") !== false) { $gaming += $result['debit'] - $result['credit']; }
 		else if(stripos($result['note'], "collect") !== false || stripos($result['note'], "figure") !== false || stripos($result['note'], "japan") !== false) { $collectible += $result['debit'] - $result['credit']; }
