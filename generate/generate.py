@@ -17,22 +17,36 @@ if 'prompt' not in form:
 
 prompt = form['prompt']
 
+img = None
+if 'img' in form:
+	img = form['img']
+
 bedrock = boto3.client("bedrock-runtime", region_name=run.config('AWS_REGION'))
 
-body = json.dumps({
-	"taskType": "TEXT_IMAGE",
-	"textToImageParams": {
-		"text": prompt
-	},
-	"imageGenerationConfig": {
-		"numberOfImages": 1,
-		"quality": "premium",
-		"width": 1024,
-		"height": 1024,
-		"cfgScale": 7.5,
-		"seed": random.randint(1, 214783646)
-	}
-})
+if img: # source image
+	body = json.dumps({
+		"taskType": "IMAGE_VARIATION",
+		"imageVariationParams": {
+			"text": prompt,
+			"images": [ img ]
+		}
+	})
+
+else: # prompt only
+	body = json.dumps({
+		"taskType": "TEXT_IMAGE",
+		"textToImageParams": {
+			"text": prompt
+		},
+		"imageGenerationConfig": {
+			"numberOfImages": 1,
+			"quality": "premium",
+			"width": 1024,
+			"height": 1024,
+			"cfgScale": 7.5,
+			"seed": random.randint(1, 214783646)
+		}
+	})
 
 response = bedrock.invoke_model(
 	body = body,

@@ -3,6 +3,7 @@
 <h3><a href="/" title="Back home"><i class="fa fa-paw"></i></a> AI Image Generator</h3>
 
 <script>
+var lastimg = "";
 function generate()
 {
 	document.getElementById('submit').disabled = true;
@@ -40,13 +41,15 @@ function generate()
 			}
 			else
 			{
-				img.src = "data:image/jpeg;base64," + this.response;
-				a.href = "data:image/jpeg;base64," + this.response;
+				lastimg = this.response;
+				img.src = "data:image/jpeg;base64," + lastimg;
+				a.href = "data:image/jpeg;base64," + lastimg;
 			}
 		}
 	};
 	var data = new FormData();
 	data.append("prompt", prompt);
+//	if(lastimg != "") { data.append("img", lastimg); }
 	xhttp.send(data);
 }
 </script>
