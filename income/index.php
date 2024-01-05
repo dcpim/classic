@@ -276,7 +276,7 @@ $food = 0;
 $travel = 0;
 $collectibles = 0;
 $housing = 0;
-$gaming = 0;
+$media = 0;
 $subs = 0;
 $results = $db->query("SELECT * FROM income WHERE date like '" . $year . "%' AND debit > 0 ORDER BY date ASC;");
 while($result = $results->fetch_assoc())
@@ -318,9 +318,12 @@ while($result = $results->fetch_assoc())
 		else if(
 			stripos($result['note'], "steam") !== false ||
 			stripos($result['note'], "gam") !== false ||
+			stripos($result['note'], "movie") !== false ||
+			stripos($result['note'], "show") !== false ||
 			stripos($result['note'], "in-app") !== false)
+			stripos($result['note'], "apple") !== false ||
 		{
-			$gaming += $result['debit'] - $result['credit'];
+			$media += $result['debit'] - $result['credit'];
 		}
 		else if(
 			stripos($result['note'], "collect") !== false ||
@@ -333,7 +336,7 @@ while($result = $results->fetch_assoc())
 		else if(
 			stripos($result['note'], "youtube") !== false ||
 			stripos($result['note'], "aws") !== false ||
-			stripos($result['note'], "apple") !== false ||
+			stripos($result['note'], "icloud") !== false ||
 			stripos($result['note'], "subscri") !== false)
 		{
 			$subs += $result['debit'] - $result['credit'];
@@ -349,7 +352,7 @@ echo "['Food', " . $food . "],";
 echo "['Housing', " . $housing . "],";
 echo "['Travel', " . $travel . "],";
 echo "['Collection', " . $collectibles . "],";
-echo "['Gaming', " . $gaming . "],";
+echo "['Entertainment', " . $media . "],";
 echo "['Subscriptions', " . $subs . "],";
 echo "['Others', " . $others . "],";
 ?>
