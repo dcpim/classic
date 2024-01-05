@@ -320,8 +320,8 @@ while($result = $results->fetch_assoc())
 			stripos($result['note'], "gam") !== false ||
 			stripos($result['note'], "movie") !== false ||
 			stripos($result['note'], "show") !== false ||
-			stripos($result['note'], "in-app") !== false)
-			stripos($result['note'], "apple") !== false ||
+			stripos($result['note'], "in-app") !== false ||
+			stripos($result['note'], "apple") !== false)
 		{
 			$media += $result['debit'] - $result['credit'];
 		}
