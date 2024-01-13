@@ -350,9 +350,9 @@ while($result = $results->fetch_assoc())
 echo "['Utilities', " . $utils . "],";
 echo "['Food', " . $food . "],";
 echo "['Housing', " . $housing . "],";
-echo "['Travel', " . $travel . "],";
-echo "['Collection', " . $collectibles . "],";
-echo "['Entertainment', " . $media . "],";
+echo "['Travels', " . $travel . "],";
+echo "['Figures / Books', " . $collectibles . "],";
+echo "['Games / Media', " . $media . "],";
 echo "['Subscriptions', " . $subs . "],";
 echo "['Others', " . $others . "],";
 ?>

@@ -27,10 +27,13 @@ for feed in feeds:
 	count = 0
 	for item in rss['items']:
 		print("<li>{}: {}</li>".format(feed['url'], item['title']))
-		date = item['updated'].rsplit(' ', 1)[0]
+		try:
+			date = item['updated'].rsplit(' ', 1)[0]
+		except:
+			break
 		title = item['title']
 		title = connix.max_len(title, 245)
-		url = item['link'][:249]
+		url = item['link'][:499]
 		img = ""
 		if 'links' in item and len(item['links']) > 1:
 			img = item['links'][1]['url']
@@ -38,7 +41,7 @@ for feed in feeds:
 			img = item['media_content'][0]['url']
 		if len(img) > 0 and img[0] == '/':
 			img = "http:" + img
-		img = connix.max_len(img, 245)
+		img = connix.max_len(img, 499)
 		desc = ""
 		if 'description' in item:
 			desc = item['description']
