@@ -29,15 +29,15 @@ for feed in feeds:
 		print("<li>{}: {}</li>".format(feed['url'], item['title']))
 		try:
 			date = item['updated'].rsplit(' ', 1)[0]
+			title = item['title']
+			title = connix.max_len(title, 245)
+			url = item['link'][:499]
 		except:
-			break
-		title = item['title']
-		title = connix.max_len(title, 245)
-		url = item['link'][:499]
+			continue
 		img = ""
-		if 'links' in item and len(item['links']) > 1:
+		if 'links' in item and len(item['links']) > 1 and 'url' in item['links'][1]:
 			img = item['links'][1]['url']
-		elif 'media_content' in item:
+		elif 'media_content' in item and len(item['media_content']) > 0 and 'url' in item['media_content'][0]:
 			img = item['media_content'][0]['url']
 		if len(img) > 0 and img[0] == '/':
 			img = "http:" + img
