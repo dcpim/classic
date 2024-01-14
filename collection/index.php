@@ -94,7 +94,7 @@ while($record = $results->fetch_assoc())
 		$misc = 0;
 	}
 	if($record['type'] == "Figure") { $figures += 1; }
-	if($record['type'] == "Book") { $books += 1; }
+	elseif($record['type'] == "Book") { $books += 1; }
 	else { $misc += 1; }
 }
 echo "      ['" . $year . "', " . $figures . ", " . $books . ", " . $misc . "],\n";
