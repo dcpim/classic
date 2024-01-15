@@ -182,6 +182,7 @@
 	"pipelines/wlan_scan.py": "/var/www/html/pipelines/wlan_scan.py",
 	"pipelines/wlan_ssid.py": "/var/www/html/pipelines/wlan_ssid.py",
 	"pipelines/validate.py": "/var/www/html/pipelines/validate.py",
+	"pipelines/reminders.py": "/var/www/html/pipelines/reminders.py",
 	"status/index.html": "/var/www/html/status/index.html",
 	"status/message.php": "/var/www/html/status/message.php",
 	"mail/index.php": "/var/www/html/mail/index.php",

@@ -31,6 +31,9 @@ if len(results) > 0:
 	print(cats)
 
 	task = "There are {} photos without names for events {}".format(len(results), cats)
-	run.sql("INSERT INTO tasks (task, date, prjid, repeatset) VALUES (%s, %s, %s, %s);", task, connix.now().split(' ')[0], 1, "Never")
+
+	count = run.query("SELECT COUNT(*) FROM tasks WHERE prjid = 1 AND task = '" + task + "';")
+	if int(count[0][0]) == 0:
+		run.sql("INSERT INTO tasks (task, date, prjid, repeatset) VALUES (%s, %s, %s, %s);", task, connix.now().split(' ')[0], 1, "Never")
 
 run.done()
