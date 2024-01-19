@@ -39,13 +39,13 @@ for pipeline in pipelines:
 		print(pipeline[1])
 		cur = db.cursor()
 		params = "export QUERY_STRING=\"{}\";".format(pipeline[2])
-		cur.execute("UPDATE automate SET last_run = %s WHERE id = %s;", (connix.now(), pipeline[0]))
 		cur.execute("UPDATE automate SET next_run = %s WHERE id = %s;", ((int(time.time()) + int(pipeline[4])), pipeline[0]))
 		try:
 			start = time.time()
 			output = connix.cmd("{}{}{}{} 2>&1".format(envs, params, folder, pipeline[1]))
 			end = time.time()
 			duration = end - start
+			cur.execute("UPDATE automate SET last_run = %s WHERE id = %s;", (connix.now(), pipeline[0]))
 			cur.execute("UPDATE automate SET output = %s, duration = %s WHERE id = %s;", (output, duration, pipeline[0]))
 			if "DONE" in output: # Pipeline was successful
 				cur.execute("UPDATE automate SET result = %s WHERE id = %s;", (1, pipeline[0]))

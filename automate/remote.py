@@ -28,10 +28,11 @@ db = pymysql.connect(host=os.environ['DB_HOST'], user=os.environ['DB_USER'], pas
 cur = db.cursor()
 
 if action == "fetch": # List remote pipelines
-	cur.execute("SELECT id,pipeline,params FROM automate WHERE next_run < UNIX_TIMESTAMP() AND repeats != 0 AND node = %s;", (node))
+	cur.execute("SELECT id,pipeline,params,repeats FROM automate WHERE next_run < UNIX_TIMESTAMP() AND repeats != 0 AND node = %s;", (node))
 	pipelines = cur.fetchall()
 	output = []
 	for pipeline in pipelines:
+		cur.execute("UPDATE automate SET next_run = %s WHERE id = %s;", ((int(time.time()) + int(pipeline[3])), pipeline[0]))
 		output.append({'id': pipeline[0], 'pipeline': pipeline[1], 'params': pipeline[2]})
 	print(output)
 elif action == "push": # Save results of a remote pipeline
@@ -62,11 +63,11 @@ elif action == "push": # Save results of a remote pipeline
 				cur.execute("INSERT INTO automate_runs (id, output, date, result) VALUES (%s, %s, %s, %s);", (id, data, connix.now(), status))
 			if pipeline[2] == 1 and status == 0: # Send notification on failure
 				run.notify("Automation [{}] failed on node [{}].".format(pipeline[3], node))
-		db.commit()
 	except Exception as err:
 		run.notify("Automation engine failed: {}".format(str(err)))
 		run.error("Internal error.")
 else:
 	run.error("Unknown action.")
 
+db.commit()
 db.close()
