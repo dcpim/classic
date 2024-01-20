@@ -19,6 +19,7 @@ newsfeeds = [
 			]
 weatherfeed = "https://weather.gc.ca/rss/city/qc-147_e.xml"
 symbols = [
+				{ 'symbol': "^DJI", 'name': "DOW JONES" },
 				{ 'symbol': "^GSPC", 'name': "S&P 500" },
 				{ 'symbol': "^IXIC", 'name': "NASDAQ" },
 				{ 'symbol': "CADJPY=X", 'name': "CAD/JPY" },
@@ -101,7 +102,7 @@ for symbol in symbols:
 			stock_color = "red"
 		if "positive" in data2:
 			stock_color = "green"
-		output += "<font color='white'><b>{}:</b></font> <font color='{}'>{}</font> &nbsp; ".format(symbol['name'], stock_color, stock_price)
+		output += "<font color='white'><b>{}:</b></font> <font color='{}'>{}</font> &nbsp; &nbsp; ".format(symbol['name'], stock_color, stock_price)
 	except Exception as e:
 		print(e)
 with open("{}/stocks.txt".format(folder), 'w', encoding='UTF-8') as fd:

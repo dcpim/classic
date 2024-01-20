@@ -36,9 +36,9 @@ while($result = $results->fetch_assoc())
 	$date2 = new DateTime(date("Y-m-d"));
 	$days = $date2->diff($date1)->format("%a");
 	echo file_get_contents("stocks.txt");
-	echo " &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color='white'><i>Being disciplined for <font color='";
-	if($days >= $max_days) { echo "green'><b>" . number_format($days) . "</b></font> days.</i></font>"; }
-	else { echo "red'><b>" . number_format($days) . "</b></font> day.</i></font>"; }
+//	echo " &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color='white'><i>Being disciplined for <font color='";
+//	if($days >= $max_days) { echo "green'><b>" . number_format($days) . "</b></font> days.</i></font>"; }
+//	else { echo "red'><b>" . number_format($days) . "</b></font> day.</i></font>"; }
 }
 if($days > $max_days)
 {
