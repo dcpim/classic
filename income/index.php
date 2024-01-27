@@ -278,6 +278,7 @@ $collectibles = 0;
 $housing = 0;
 $media = 0;
 $subs = 0;
+$clothing = 0;
 $results = $db->query("SELECT * FROM income WHERE date like '" . $year . "%' AND debit > 0 ORDER BY date ASC;");
 while($result = $results->fetch_assoc())
 {
@@ -326,6 +327,11 @@ while($result = $results->fetch_assoc())
 			$media += $result['debit'] - $result['credit'];
 		}
 		else if(
+			stripos($result['note'], "cloth") !== false)
+		{
+			$clothing += $result['debit'] - $result['credit'];
+		}
+		else if(
 			stripos($result['note'], "collect") !== false ||
 			stripos($result['note'], "figure") !== false ||
 			stripos($result['note'], "japan") !== false ||
@@ -350,9 +356,10 @@ while($result = $results->fetch_assoc())
 echo "['Utilities', " . $utils . "],";
 echo "['Food', " . $food . "],";
 echo "['Housing', " . $housing . "],";
+echo "['Clothing', " . $clothing . "],";
 echo "['Travels', " . $travel . "],";
-echo "['Figures / Books', " . $collectibles . "],";
-echo "['Games / Media', " . $media . "],";
+echo "['Collectibles', " . $collectibles . "],";
+echo "['Entertainment', " . $media . "],";
 echo "['Subscriptions', " . $subs . "],";
 echo "['Others', " . $others . "],";
 ?>
