@@ -29,8 +29,8 @@ run.sql("DELETE FROM device_stats WHERE device = %s AND disk = %s;", device, dis
 # Add stats to database
 run.sql("INSERT INTO device_stats (date, device, disk, diskusage, updatedate, uptime) VALUES (%s, %s, %s, %s, %s, %s);", connix.now().split(' ')[0], device, disk, usage, update, uptime)
 
-# Alert if > 90%
-if usage > 90:
+# Alert if > 95%
+if usage > 95:
 	run.notify("Disk space on [{}] was reported at [{}%].".format(device, usage))
 
 run.done()
