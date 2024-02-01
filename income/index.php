@@ -300,6 +300,7 @@ while($result = $results->fetch_assoc())
 		}
  		else if(
 			stripos($result['note'], "videotron") !== false ||
+			stripos($result['note'], "mint") !== false ||
 			stripos($result['note'], "hydro") !== false ||
 			stripos($result['note'], "desjardins") !== false ||
 			stripos($result['note'], "public") !== false)

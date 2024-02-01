@@ -40,7 +40,7 @@ while($result = $results->fetch_assoc())
           ]);
 
 	    var options = {
-    		  height: 500,
+    		  height: 520,
 		      timeline: { colorByRowLabel: true },
 	    };
         chart.draw(dataTable, options);
