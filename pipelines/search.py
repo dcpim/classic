@@ -70,7 +70,7 @@ results = run.query("SELECT site,prjid FROM secrets WHERE site LIKE '%%{}%%' OR 
 for result in results:
 	results2 = run.query("SELECT name,client FROM projects WHERE id = {};".format(result[1]))
 	if len(results2) > 0:
-		output += "<p><b>Secret:</b> <a target=_new href='/secrets/?id={}'>{}</a> {} ({})</p>".format(result[1], result[0], results2[0][0], results2[0][1])
+		output += "<p><b>Secret:</b> <a href='/secrets/?id={}'>{}</a> {} ({})</p>".format(result[1], result[0], results2[0][0], results2[0][1])
 
 # Search renders
 count = run.query("SELECT COUNT(*) FROM renders WHERE name LIKE '%%{}%%';".format(q))

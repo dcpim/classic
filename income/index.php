@@ -322,6 +322,9 @@ while($result = $results->fetch_assoc())
 			stripos($result['note'], "gam") !== false ||
 			stripos($result['note'], "movie") !== false ||
 			stripos($result['note'], "show") !== false ||
+			stripos($result['note'], "event") !== false ||
+			stripos($result['note'], "concert") !== false ||
+			stripos($result['note'], "convention") !== false ||
 			stripos($result['note'], "in-app") !== false ||
 			stripos($result['note'], "apple") !== false)
 		{
@@ -336,7 +339,7 @@ while($result = $results->fetch_assoc())
 			stripos($result['note'], "collect") !== false ||
 			stripos($result['note'], "figure") !== false ||
 			stripos($result['note'], "japan") !== false ||
-			stripos($result['note'], "books") !== false)
+			stripos($result['note'], "book") !== false)
 		{
 			$collectibles += $result['debit'] - $result['credit'];
 		}
