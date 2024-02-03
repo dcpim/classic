@@ -14,23 +14,8 @@ while($result = $results->fetch_assoc())
 ?>
 
 <?php } if($login_admin == 1 or $login_admin == 2 or $login_admin == 3) { ?>
-<h4>Finance</h4>
+<h4>Finances</h4>
 
-<div class='img-thumbnail' style='display:inline-block;width:150px'>
-	<center><a href="/transactions"><i class="fa fa-list fa-5x"></i><br>Transactions</a></center>
-</div>
-<div class='img-thumbnail' style='display:inline-block;width:150px'>
-	<center><a href="/invoices"><i class="fa fa-arrow-circle-o-down fa-5x"></i><br>Invoices</a></center>
-</div>
-<div class='img-thumbnail' style='display:inline-block;width:150px'>
-	<center><a href="/expenses"><i class="fa fa-arrow-circle-o-up fa-5x"></i><br>Expenses</a></center>
-</div>
-<div class='img-thumbnail' style='display:inline-block;width:150px'>
-	<center><a href="/reports"><i class="fa fa-id-card fa-5x"></i><br>Reports</a></center>
-</div>
-<div class='img-thumbnail' style='display:inline-block;width:150px'>
-	<center><a href="/payroll"><i class="fa fa-envelope-open-o  fa-5x"></i><br>Payroll</a></center>
-</div>
 <div class='img-thumbnail' style='display:inline-block;width:150px'>
 	<center><a href="/income"><i class="fa fa-money fa-5x"></i><br>Personal</a></center>
 </div>
