@@ -130,7 +130,7 @@ print("</pre><br>")
 sys.stdout.flush()
 
 # Insert metadata into database
-q = "INSERT INTO health (date, distance, stairs, steps, weight, diastolic, systolic, heart, fat) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s);"
+q = "INSERT IGNORE INTO health (date, distance, stairs, steps, weight, diastolic, systolic, heart, fat) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s);"
 added = 0
 
 for day in days:

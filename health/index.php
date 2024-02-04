@@ -153,7 +153,7 @@ function drawCurveTypes11()
     var data11 = google.visualization.arrayToDataTable([
         ['Date', 'Distance (km)'],
 <?php
-$results = $db->query("SELECT YEAR(date) AS year, MONTH(date) AS month, ROUND(AVG(distance),1) AS distance FROM health WHERE distance != 0 GROUP BY MONTH(date), YEAR(date) ORDER BY YEAR(date), MONTH(date);");
+$results = $db->query("SELECT YEAR(date) AS year, MONTH(date) AS month, ROUND(AVG(distance),1) AS distance FROM health WHERE distance != 0 AND date > '2016-12-31' GROUP BY MONTH(date), YEAR(date) ORDER BY YEAR(date), MONTH(date);");
 while($record = $results->fetch_assoc())
 {
 	echo "[new Date(" . $record['year'] . ", " . ($record['month']-1) . ", 01), " . $record['distance'] . "],\n";
@@ -178,7 +178,7 @@ function drawCurveTypes21()
     var data21 = google.visualization.arrayToDataTable([
         ['Date', 'Weight (lbs)'],
 <?php
-$results = $db->query("SELECT YEAR(date) AS year, MONTH(date) AS month, ROUND(AVG(weight),0) AS weight FROM health WHERE weight != 0 GROUP BY MONTH(date), YEAR(date) ORDER BY YEAR(date), MONTH(date);");
+$results = $db->query("SELECT YEAR(date) AS year, MONTH(date) AS month, ROUND(AVG(weight),0) AS weight FROM health WHERE weight != 0 AND date > '2016-12-31' GROUP BY MONTH(date), YEAR(date) ORDER BY YEAR(date), MONTH(date);");
 while($record = $results->fetch_assoc())
 {
 	echo "[new Date(" . $record['year'] . ", " . ($record['month']-1) . ", 01), " . $record['weight'] . "],\n";
