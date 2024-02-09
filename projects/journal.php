@@ -25,9 +25,9 @@ while($result = $results->fetch_assoc())
 	<div class="row">
 		<div class="col-md-8" style='margin-top:15px'>
 <?php if($_GET['auto']) { ?>
-			<a href="./journal.php?prjid=<?php echo $id; ?>">Show automatic entries</a>
+			<a href="./journal.php?prjid=<?php echo $id; ?>">Hide automatic entries</a>
 <?php } else { ?>
-			<a href="./journal.php?auto=1&prjid=<?php echo $id; ?>">Hide automatic entries</a>
+			<a href="./journal.php?auto=1&prjid=<?php echo $id; ?>">Show automatic entries</a>
 <?php } ?>
 		</div>
 		<div class="col-md-2">
@@ -42,21 +42,21 @@ while($result = $results->fetch_assoc())
 
 <?php
 $count = 0;
-if($_GET['auto']) { $results = $db->query("SELECT COUNT(*) FROM journal WHERE prjid = " . $id . " AND type = 0;"); }
-else { $results = $db->query("SELECT COUNT(*) FROM journal WHERE prjid = " . $id . ";"); }
+if($_GET['auto']) { $results = $db->query("SELECT COUNT(*) FROM journal WHERE prjid = " . $id . ";"); }
+else { $results = $db->query("SELECT COUNT(*) FROM journal WHERE prjid = " . $id . " AND type = 0;"); }
 while($result = $results->fetch_assoc())
 {
 	$count = $result['COUNT(*)'];
 }
 if($_GET['auto'])
 {
-	if($_GET['history']) { $results = $db->query("SELECT * FROM journal WHERE prjid = " . $id . " AND type = 0 ORDER BY date DESC;"); }
-	else { $results = $db->query("SELECT * FROM journal WHERE prjid = " . $id . " AND type = 0 ORDER BY date DESC LIMIT 100;"); }
+	if($_GET['history']) { $results = $db->query("SELECT * FROM journal WHERE prjid = " . $id . " ORDER BY date DESC;"); }
+	else { $results = $db->query("SELECT * FROM journal WHERE prjid = " . $id . " ORDER BY date DESC LIMIT 100;"); }
 }
 else
 {
-	if($_GET['history']) { $results = $db->query("SELECT * FROM journal WHERE prjid = " . $id . " ORDER BY date DESC;"); }
-	else { $results = $db->query("SELECT * FROM journal WHERE prjid = " . $id . " ORDER BY date DESC LIMIT 100;"); }
+	if($_GET['history']) { $results = $db->query("SELECT * FROM journal WHERE prjid = " . $id . " AND type = 0 ORDER BY date DESC;"); }
+	else { $results = $db->query("SELECT * FROM journal WHERE prjid = " . $id . " AND type = 0 ORDER BY date DESC LIMIT 100;"); }
 }
 while($result = $results->fetch_assoc())
 {
