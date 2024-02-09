@@ -287,8 +287,8 @@ while($result = $results->fetch_assoc())
 		if(
 			stripos($result['note'], "tangerine") !== false ||
 			stripos($result['note'], "credit") !== false ||
-			stripos($result['note'], "domino") !== false)
-			stripos($result['note'], "restaur") !== false)
+			stripos($result['note'], "domino") !== false ||
+			stripos($result['note'], "restaur") !== false ||
 			stripos($result['note'], "food") !== false)
 		{
 			$food += $result['debit'] - $result['credit'];
