@@ -34,6 +34,8 @@ function player(url)
 <?php
 tabletop("music", "<tr><th style='display:none'></th><th data-priority='1'>Title</th><th data-priority='1'>Artist</th><th data-priority='2'>Length</th><th data-priority='2'>Size</th></tr>", 1);
 $totalsize = 0;
+$totalmins = 0;
+$totalsecs = 0;
 $results = $db->query("SELECT * FROM music ORDER BY id DESC;");
 while($result = $results->fetch_assoc())
 {
@@ -44,11 +46,19 @@ while($result = $results->fetch_assoc())
 	if($login_admin == 1) { echo "<span style='float:right'><a title='Edit entry' class='update' href='#' data-toggle='modal' data-target='#updateModal' data-date='" . $result['date'] . "' data-id='" . $result['id'] . "' data-name=\"" . $result['title'] . "\" data-artist=\"" . $result['artist'] . "\"><i class='fa fa-pencil-square-o'></i></a></span>"; }
 	echo "</td></tr>\n";
 	$totalsize = $totalsize + intval($result['size']);
+	if(str_contains($result['duration'], ':'))
+	{
+		$a = explode(":", $result['duration']);
+		$totalmins = $totalmins + intval($a[0]);
+		$totalsecs = $totalsecs + intval($a[1]);
+	}
 }
+$totalmins = $totalmins + intval($totalsecs / 60);
+$totalhours = $totalmins / 60;
 tablebottom("music", "0", "desc");
 ?>
 
-<p>Total size: <b><?php echo size_format($totalsize); ?></b></p>
+<p>Total size: <b><?php echo size_format($totalsize); ?> (<?php echo number_format($totalhours,1); ?> hours)</b></p>
 
 <?php
 if($login_admin == 1) { modal("update.py", "delete.py", array(
