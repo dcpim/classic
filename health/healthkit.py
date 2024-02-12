@@ -35,7 +35,7 @@ except:
 # Process records
 print("<div style='background-color:#AAFFAA;padding:5px'>Processing " + str(len(records)) + " records...</div><pre>")
 sys.stdout.flush()
-results = {'steps': {}, 'distance': {}, 'stairs': {}, 'weight': {}, 'systolic': {}, 'diastolic': {}, 'heart': {}, 'fat': {}}
+results = {'steps': {}, 'distance': {}, 'stairs': {}, 'weight': {}, 'systolic': {}, 'diastolic': {}, 'heart': {}, 'fat': {}, 'oxygen': {}, 'walkingheart': {}, 'restingheart': {}, 'temp': {}}
 for record in records:
 	result = {}
 	for key, value in record.attrib.items():
@@ -74,9 +74,29 @@ for record in records:
 				results['diastolic'][day] = int(result['value'])
 		elif result['type'] == "HKQuantityTypeIdentifierHeartRate":
 			if day in results['heart']:
-				results['heart'][day] += int(result['value'])
+				results['heart'][day] += int(float(result['value']))
 			else:
-				results['heart'][day] = int(result['value'])
+				results['heart'][day] = int(float(result['value']))
+		elif result['type'] == "HKQuantityTypeIdentifierOxygenSaturation":
+			if day in results['oxygen']:
+				results['oxygen'][day] += float(result['value'])
+			else:
+				results['oxygen'][day] = float(result['value'])
+		elif result['type'] == "HKQuantityTypeIdentifierAppleSleepingWristTemperature":
+			if day in results['temp']:
+				results['temp'][day] += float(result['value'])
+			else:
+				results['temp'][day] = float(result['value'])
+		elif result['type'] == "HKQuantityTypeIdentifierWalkingHeartRateAverage":
+			if day in results['walkingheart']:
+				results['walkingheart'][day] += int(float(result['value']))
+			else:
+				results['walkingheart'][day] = int(float(result['value']))
+		elif result['type'] == "HKQuantityTypeIdentifierRestingHeartRate":
+			if day in results['restingheart']:
+				results['restingheart'][day] += int(float(result['value']))
+			else:
+				results['restingheart'][day] = int(float(result['value']))
 		elif result['type'] == "HKQuantityTypeIdentifierWalkingAsymmetryPercentage":
 			pass
 		elif result['type'] == "HKQuantityTypeIdentifierWalkingDoubleSupportPercentage":
@@ -93,20 +113,42 @@ for record in records:
 			pass
 		elif result['type'] == "HKQuantityTypeIdentifierWalkingSpeed":
 			pass
-		elif result['type'] == "HKQuantityTypeIdentifierOxygenSaturation":
-			pass
 		elif result['type'] == "HKQuantityTypeIdentifierActiveEnergyBurned":
 			pass
 		elif result['type'] == "HKQuantityTypeIdentifierBasalEnergyBurned":
 			pass
 		elif result['type'] == "HKQuantityTypeIdentifierHeadphoneAudioExposure":
 			pass
+		elif result['type'] == "HKQuantityTypeIdentifierRespiratoryRate":
+			pass
+		elif result['type'] == "HKQuantityTypeIdentifierAppleExerciseTime":
+			pass
+		elif result['type'] == "HKQuantityTypeIdentifierEnvironmentalAudioExposure":
+			pass
+		elif result['type'] == "HKQuantityTypeIdentifierAppleStandTime":
+			pass
+		elif result['type'] == "HKQuantityTypeIdentifierStairAscentSpeed":
+			pass
+		elif result['type'] == "HKQuantityTypeIdentifierStairDescentSpeed":
+			pass
+		elif result['type'] == "HKDataTypeSleepDurationGoal":
+			pass
+		elif result['type'] == "HKQuantityTypeIdentifierTimeInDaylight":
+			pass
+		elif result['type'] == "HKQuantityTypeIdentifierHeartRateVariabilitySDNN":
+			pass
+		elif result['type'] == "HKQuantityTypeIdentifierPhysicalEffort":
+			pass
+		elif result['type'] == "HKCategoryTypeIdentifierSleepAnalysis":
+			pass
+		elif result['type'] == "HKCategoryTypeIdentifierAppleStandHour":
+			pass
 		else:
 			if 'value' in result:
-				print("Unknown data point: " + result['type'] + " - " + str(result['value']) + "<br>")
+				print("Unknown data point: " + result['startDate'] + " - " + result['type'] + " - " + str(result['value']) + "<br>")
 days = []
 for result in results['distance'].keys():
-	day = {'date': result, 'distance': 0, 'stairs': 0, 'steps': 0, 'weight': 0, 'systolic': 0, 'diastolic': 0, 'heart': 0, 'fat': 0}
+	day = {'date': result, 'distance': 0, 'stairs': 0, 'steps': 0, 'weight': 0, 'systolic': 0, 'diastolic': 0, 'heart': 0, 'fat': 0, 'oxygen': 0, 'walkingheart': 0, 'restingheart': 0, 'temp': 0}
 	if result in results['distance']:
 		day['distance'] = round(results['distance'][result], 2)
 	if result in results['stairs']:
@@ -123,6 +165,14 @@ for result in results['distance'].keys():
 		day['diastolic'] = results['diastolic'][result]
 	if result in results['heart']:
 		day['heart'] = results['heart'][result]
+	if result in results['restingheart']:
+		day['restingheart'] = results['restingheart'][result]
+	if result in results['walkingheart']:
+		day['walkingheart'] = results['walkingheart'][result]
+	if result in results['oxygen']:
+		day['oxygen'] = results['oxygen'][result]
+	if result in results['temp']:
+		day['temp'] = results['temp'][result]
 	if not connix.in_list(days, 'date', result) and result != connix.now().split(' ')[0]:
 		days.append(day)
 days.sort(key=lambda x: datetime.datetime.strptime(x['date'], '%Y-%m-%d'))
@@ -130,15 +180,12 @@ print("</pre><br>")
 sys.stdout.flush()
 
 # Insert metadata into database
-q = "INSERT IGNORE INTO health (date, distance, stairs, steps, weight, diastolic, systolic, heart, fat) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s);"
+q = "INSERT IGNORE INTO health (date, distance, stairs, steps, weight, diastolic, systolic, heart, fat, oxygen, walkingheart, restingheart, temperature) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s);"
 added = 0
 
 for day in days:
-	try:
-		run.sql(q, day['date'], day['distance'], day['stairs'], day['steps'], day['weight'], day['diastolic'], day['systolic'], day['heart'], day['fat'])
-		added += 1
-	except:
-		pass
+	run.sql(q, day['date'], day['distance'], day['stairs'], day['steps'], day['weight'], day['diastolic'], day['systolic'], day['heart'], day['fat'], day['oxygen'], day['walkingheart'], day['restingheart'], day['temp'])
+	added += 1
 
 # Delete local file
 run.cmd("rm -f \"/tmp/{}\"".format(tmpfile))
@@ -146,4 +193,3 @@ run.cmd("rm -f \"/tmp/{}\"".format(tmpfile))
 print("Added " + str(added) + " new records.<br>")
 
 run.done(True)
-

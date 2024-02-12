@@ -217,6 +217,31 @@ color: '#C0C0C0' }, position: 'top', alignment: 'end' }, chartArea: { background
 }
 </script>
 
+<div id="chart_div6"></div>
+
+<script>
+google.charts.load('current', {packages: ['corechart', 'line']});
+google.charts.setOnLoadCallback(drawCurveTypes6);
+
+function drawCurveTypes6()
+{
+    var data6 = google.visualization.arrayToDataTable([
+        ['Date', 'Resting (bpm)', 'Walking (bpm)'],
+<?php
+$results = $db->query("SELECT YEAR(date) AS year, MONTH(date) AS month, ROUND(AVG(restingheart),0) AS restingheart, ROUND(AVG(walkingheart),0) AS walkingheart FROM health WHERE restingheart != 0 AND walkingheart != 0 GROUP BY MONTH(date), YEAR(date) ORDER BY YEAR(date), MONTH(date);");
+while($record = $results->fetch_assoc())
+{
+	echo "[new Date(" . $record['year'] . ", " . ($record['month']-1) . ", 01), " . $record['restingheart'] . ", " . $record['walkingheart'] . "],\n";
+}
+?>
+    ]);
+    var options6 = { title: 'Average heart rate', <?php if($darkmode) { ?> backgroundColor: '#182025', titleTextStyle: { color: '#C0C0C0', bold: true }, legend: { textStyle: {
+color: '#C0C0C0' }, position: 'top', alignment: 'end' }, chartArea: { backgroundColor: '#182025', width: '100%', left: 40, right: 30 }, hAxis:{textStyle:{color:'#707070'}}, vAxis:{textStyle:{color:'#707070'}} <?php } ?> };
+    var chart6 = new google.visualization.LineChart(document.getElementById('chart_div6'));
+    chart6.draw(data6, options6);
+}
+</script>
+
 <div id="chart_div4"></div>
 
 <script>
