@@ -161,7 +161,7 @@ while($record = $results->fetch_assoc())
 ?>
     ]);
 
-	var options11 = { title: 'Distance walked', <?php if($darkmode) { ?> backgroundColor: '#182025', titleTextStyle: { color: '#C0C0C0', bold: true }, legend: { textStyle: { color: '#C0C0C0' }, position: 'top', alignment: 'end' }, chartArea: { backgroundColor: '#182025', width: '100%', left: 40, right: 30 }, hAxis:{textStyle:{color:'#707070'}}, vAxis:{textStyle:{color:'#707070'}} <?php } ?> };
+	var options11 = { title: 'Distance walked (monthly averages)', <?php if($darkmode) { ?> backgroundColor: '#182025', titleTextStyle: { color: '#C0C0C0', bold: true }, legend: { textStyle: { color: '#C0C0C0' }, position: 'top', alignment: 'end' }, chartArea: { backgroundColor: '#182025', width: '100%', left: 40, right: 30 }, hAxis:{textStyle:{color:'#707070'}}, vAxis:{textStyle:{color:'#707070'}} <?php } ?> };
     var chart11 = new google.visualization.LineChart(document.getElementById('chart_div11'));
     chart11.draw(data11, options11);
 }
@@ -186,7 +186,7 @@ while($record = $results->fetch_assoc())
 ?>
     ]);
 
-	var options21 = { title: 'Weight', <?php if($darkmode) { ?> backgroundColor: '#182025', titleTextStyle: { color: '#C0C0C0', bold: true }, legend: { textStyle: { color: '#C0C0C0' }, position: 'top', alignment: 'end' }, chartArea: { backgroundColor: '#182025', width: '100%', left: 40, right: 30 }, hAxis:{textStyle:{color:'#707070'}}, vAxis:{textStyle:{color:'#707070'}} <?php } ?> };
+	var options21 = { title: 'Weight (monthly averages)', <?php if($darkmode) { ?> backgroundColor: '#182025', titleTextStyle: { color: '#C0C0C0', bold: true }, legend: { textStyle: { color: '#C0C0C0' }, position: 'top', alignment: 'end' }, chartArea: { backgroundColor: '#182025', width: '100%', left: 40, right: 30 }, hAxis:{textStyle:{color:'#707070'}}, vAxis:{textStyle:{color:'#707070'}} <?php } ?> };
     var chart21 = new google.visualization.LineChart(document.getElementById('chart_div21'));
     chart21.draw(data21, options21);
 }
@@ -210,35 +210,10 @@ while($record = $results->fetch_assoc())
 }
 ?>
     ]);
-    var options3 = { title: 'Blood pressure', <?php if($darkmode) { ?> backgroundColor: '#182025', titleTextStyle: { color: '#C0C0C0', bold: true }, legend: { textStyle: {
+    var options3 = { title: 'Blood pressure (monthly averages)', <?php if($darkmode) { ?> backgroundColor: '#182025', titleTextStyle: { color: '#C0C0C0', bold: true }, legend: { textStyle: {
 color: '#C0C0C0' }, position: 'top', alignment: 'end' }, chartArea: { backgroundColor: '#182025', width: '100%', left: 40, right: 30 }, hAxis:{textStyle:{color:'#707070'}}, vAxis:{textStyle:{color:'#707070'}} <?php } ?> };
     var chart3 = new google.visualization.LineChart(document.getElementById('chart_div3'));
     chart3.draw(data3, options3);
-}
-</script>
-
-<div id="chart_div6"></div>
-
-<script>
-google.charts.load('current', {packages: ['corechart', 'line']});
-google.charts.setOnLoadCallback(drawCurveTypes6);
-
-function drawCurveTypes6()
-{
-    var data6 = google.visualization.arrayToDataTable([
-        ['Date', 'Resting (bpm)', 'Walking (bpm)'],
-<?php
-$results = $db->query("SELECT YEAR(date) AS year, MONTH(date) AS month, ROUND(AVG(restingheart),0) AS restingheart, ROUND(AVG(walkingheart),0) AS walkingheart FROM health WHERE restingheart != 0 AND walkingheart != 0 GROUP BY MONTH(date), YEAR(date) ORDER BY YEAR(date), MONTH(date);");
-while($record = $results->fetch_assoc())
-{
-	echo "[new Date(" . $record['year'] . ", " . ($record['month']-1) . ", 01), " . $record['restingheart'] . ", " . $record['walkingheart'] . "],\n";
-}
-?>
-    ]);
-    var options6 = { title: 'Average heart rate', <?php if($darkmode) { ?> backgroundColor: '#182025', titleTextStyle: { color: '#C0C0C0', bold: true }, legend: { textStyle: {
-color: '#C0C0C0' }, position: 'top', alignment: 'end' }, chartArea: { backgroundColor: '#182025', width: '100%', left: 40, right: 30 }, hAxis:{textStyle:{color:'#707070'}}, vAxis:{textStyle:{color:'#707070'}} <?php } ?> };
-    var chart6 = new google.visualization.LineChart(document.getElementById('chart_div6'));
-    chart6.draw(data6, options6);
 }
 </script>
 
@@ -276,7 +251,7 @@ while($record = $results->fetch_assoc())
 ?>
     ]);
 
-    var options4 = { title: 'Calories consumed', <?php if($darkmode) { ?> backgroundColor: '#182025', titleTextStyle: { color: '#C0C0C0', bold: true }, legend: { textStyle: { color: '#C0C0C0' }, position: 'top', alignment: 'end' }, chartArea: { backgroundColor: '#182025', width: '100%', left: 40, right: 30 }, hAxis:{textStyle:{color:'#707070'}}, vAxis:{textStyle:{color:'#707070'}} <?php } ?> };
+    var options4 = { title: 'Calories consumed (monthly averages)', <?php if($darkmode) { ?> backgroundColor: '#182025', titleTextStyle: { color: '#C0C0C0', bold: true }, legend: { textStyle: { color: '#C0C0C0' }, position: 'top', alignment: 'end' }, chartArea: { backgroundColor: '#182025', width: '100%', left: 40, right: 30 }, hAxis:{textStyle:{color:'#707070'}}, vAxis:{textStyle:{color:'#707070'}} <?php } ?> };
     var chart4 = new google.visualization.LineChart(document.getElementById('chart_div4'));
     chart4.draw(data4, options4);
 }
@@ -319,9 +294,75 @@ while($record = $results->fetch_assoc())
 ?>
     ]);
 
-    var options5 = { title: 'Nutrients consumed', <?php if($darkmode) { ?> backgroundColor: '#182025', titleTextStyle: { color: '#C0C0C0', bold: true }, legend: { textStyle: { color: '#C0C0C0' }, position: 'top', alignment: 'end' }, chartArea: { backgroundColor: '#182025', width: '100%', left: 40, right: 30 }, hAxis:{textStyle:{color:'#707070'}}, vAxis:{textStyle:{color:'#707070'}} <?php } ?> };
+    var options5 = { title: 'Nutrients consumed (monthly averages)', <?php if($darkmode) { ?> backgroundColor: '#182025', titleTextStyle: { color: '#C0C0C0', bold: true }, legend: { textStyle: { color: '#C0C0C0' }, position: 'top', alignment: 'end' }, chartArea: { backgroundColor: '#182025', width: '100%', left: 40, right: 30 }, hAxis:{textStyle:{color:'#707070'}}, vAxis:{textStyle:{color:'#707070'}} <?php } ?> };
     var chart5 = new google.visualization.LineChart(document.getElementById('chart_div5'));
     chart5.draw(data5, options5);
+}
+</script>
+
+<div id="chart_div7"></div>
+
+<script>
+google.charts.load('current', {packages: ['corechart', 'line']});
+google.charts.setOnLoadCallback(drawCurveTypes7);
+
+function drawCurveTypes7()
+{
+    var data7 = google.visualization.arrayToDataTable([
+        ['Date', 'Resting (bpm)', 'Walking (bpm)'],
+<?php
+$results = $db->query("SELECT date, restingheart, walkingheart FROM health WHERE restingheart != 0 AND walkingheart != 0 AND date BETWEEN NOW() - INTERVAL 90 DAY AND NOW() ORDER BY date;");
+while($record = $results->fetch_assoc())
+{
+	echo "[new Date(" . explode('-', $record['date'])[0] . ", " . intval(explode('-', $record['date'])[1])-1 . ", " . explode('-', $record['date'])[2] . "), " . $record['restingheart'] . ", " . $record['walkingheart'] . "],\n";
+}
+?>
+    ]);
+    var options7 = { title: 'Average heart rate (90 days)', <?php if($darkmode) { ?> backgroundColor: '#182025', titleTextStyle: { color: '#C0C0C0', bold: true }, legend: { textStyle: {
+color: '#C0C0C0' }, position: 'top', alignment: 'end' }, chartArea: { backgroundColor: '#182025', width: '100%', left: 40, right: 30 }, hAxis:{textStyle:{color:'#707070'}}, vAxis:{textStyle:{color:'#707070'}} <?php } ?> };
+    var chart7 = new google.visualization.LineChart(document.getElementById('chart_div7'));
+    chart7.draw(data7, options7);
+}
+</script>
+
+<div id="chart_div6"></div>
+
+<script>
+google.charts.load('current', {packages: ['corechart', 'line']});
+google.charts.setOnLoadCallback(drawCurveTypes6);
+
+function drawCurveTypes6()
+{
+    var data6 = google.visualization.arrayToDataTable([
+        ['Date', 'Walking (mins)', 'Training (mins)', 'Unknown (mins)'],
+<?php
+$results = $db->query("SELECT * FROM workouts WHERE date BETWEEN NOW() - INTERVAL 90 DAY AND NOW() ORDER BY date;");
+$curdate = "";
+$wduration = 0;
+$tduration = 0;
+while($record = $results->fetch_assoc())
+{
+	if($curdate != $record['date'])
+	{
+		if($curdate != "")
+		{
+			echo "[new Date(" . explode('-', $curdate)[0] . ", " . intval(explode('-', $curdate)[1])-1 . ", " . explode('-', $curdate)[2] . "), " . $wduration . ", " . $tduration . ", " . $oduration . "],\n";
+		}
+		$curdate = $record['date'];
+		$wduration = 0;
+		$oduration = 0;
+		$tduration = 0;
+	}
+	if($record['type'] == "HKWorkoutActivityTypeWalking" || $record['type'] == "HKWorkoutActivityTypeHiking") { $wduration += floatval($record['duration']); }
+	elseif($record['type'] == "HKWorkoutActivityTypeFunctionalStrengthTraining") { $tduration += floatval($record['duration']); }
+	else { $oduration += floatval($record['duration']); }
+}
+?>
+    ]);
+    var options6 = { title: 'Workouts duration (90 days)', <?php if($darkmode) { ?> backgroundColor: '#182025', titleTextStyle: { color: '#C0C0C0', bold: true }, legend: { textStyle: {
+color: '#C0C0C0' }, position: 'top', alignment: 'end' }, chartArea: { backgroundColor: '#182025', width: '100%', left: 40, right: 30 }, hAxis:{textStyle:{color:'#707070'}}, vAxis:{textStyle:{color:'#707070'}} <?php } ?> };
+    var chart6 = new google.visualization.ColumnChart(document.getElementById('chart_div6'));
+    chart6.draw(data6, options6);
 }
 </script>
 

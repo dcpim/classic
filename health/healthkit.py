@@ -36,12 +36,12 @@ except:
 print("<div style='background-color:#AAFFAA;padding:5px'>Processing " + str(len(records)) + " records...</div><pre>")
 sys.stdout.flush()
 results = {'steps': {}, 'distance': {}, 'stairs': {}, 'weight': {}, 'systolic': {}, 'diastolic': {}, 'heart': {}, 'fat': {}, 'oxygen': {}, 'walkingheart': {}, 'restingheart': {}, 'temp': {}}
+workouts = {}
 for record in records:
 	result = {}
 	for key, value in record.attrib.items():
-		if key == 'type' or key == 'value' or key == 'startDate':
-			result[key] = value
-	if "type" in result:
+		result[key] = value
+	if "type" in result and "startDate" in result and "value" in result:
 		day = result['startDate'].split(' ')[0]
 		if result['type'] == "HKQuantityTypeIdentifierDistanceWalkingRunning":
 			if day in results['distance']:
@@ -145,7 +145,12 @@ for record in records:
 			pass
 		else:
 			if 'value' in result:
-				print("Unknown data point: " + result['startDate'] + " - " + result['type'] + " - " + str(result['value']) + "<br>")
+				print("Unknown data point: " + result['type'] + " - " + str(result['value']) + "<br>")
+	elif "workoutActivityType" in result:
+		workouts[result['startDate']] = {'duration': str(round(float(result['duration']), 2)), 'date': result['startDate'].split(' ')[0], 'type': result['workoutActivityType']}
+	else:
+		pass
+
 days = []
 for result in results['distance'].keys():
 	day = {'date': result, 'distance': 0, 'stairs': 0, 'steps': 0, 'weight': 0, 'systolic': 0, 'diastolic': 0, 'heart': 0, 'fat': 0, 'oxygen': 0, 'walkingheart': 0, 'restingheart': 0, 'temp': 0}
@@ -187,9 +192,18 @@ for day in days:
 	run.sql(q, day['date'], day['distance'], day['stairs'], day['steps'], day['weight'], day['diastolic'], day['systolic'], day['heart'], day['fat'], day['oxygen'], day['walkingheart'], day['restingheart'], day['temp'])
 	added += 1
 
+# Insert workouts
+q = "INSERT IGNORE INTO workouts (id, date, duration, type) VALUES (%s, %s, %s, %s);"
+wadded = 0
+
+for id, workout in workouts.items():
+	run.sql(q, id, workout['date'], workout['duration'], workout['type'])
+	wadded += 1
+
+
 # Delete local file
 run.cmd("rm -f \"/tmp/{}\"".format(tmpfile))
 
-print("Added " + str(added) + " new records.<br>")
+print("Parsed " + str(added) + " records and " + str(wadded) + " workouts.<br>")
 
 run.done(True)
