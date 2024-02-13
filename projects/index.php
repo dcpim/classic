@@ -303,7 +303,8 @@ if($login_admin == 1) { modal("save_task.py", "delete_task.py", array(
 		"Never", "Next day", "Next work day", "Next week", "Next month", "Next year"
 	)),
 	array("type" => "text", "var" => "url", "label" => "Task URL:", "options" => "maxlength='200'"),
-	array("type" => "textarea", "var" => "details", "label" => "Task details:", "options" => "maxlength='1000'")
+	array("type" => "textarea", "var" => "details", "label" => "Task details:", "options" => "maxlength='1000'"),
+	array("type" => "checkbox", "var" => "notify", "label" => "Send notification", "options" => "")
 )); }
 ?>
 

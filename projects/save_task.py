@@ -28,6 +28,9 @@ if 'details' in form:
 url = ""
 if 'url' in form:
 	url = form['url']
+if 'notify' in form:
+	if int(form['notify']) == 1:
+		run.notify("[{}] {}".format(date, task))
 
 # Update task in the database
 run.sql("UPDATE tasks SET url = %s, details = %s, task = %s, date = %s, repeatset = %s WHERE id = %s;", url, details, task, date, repeat, id)
